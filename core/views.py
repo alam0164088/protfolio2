@@ -49,19 +49,19 @@ def contact_replies(request):
 # Customer Messages View (for customers)
 def customer_messages(request):
     """Display contact messages for a specific email."""
-    messages = None
+    user_messages = None
     form = EmailSearchForm(request.POST or None)
     
     if request.method == 'POST' and form.is_valid():
         email = form.cleaned_data['email']
-        messages = ContactMessage.objects.filter(email=email).order_by('-created_at')
+        user_messages = ContactMessage.objects.filter(email=email).order_by('-created_at')
         
-        if not messages.exists():
+        if not user_messages.exists():
             messages.warning(request, "No messages found for this email address.")
     
     return render(request, 'core/customer_messages.html', {
         'form': form,
-        'messages': messages
+        'messages': user_messages
     })
 
 # Home Page View

@@ -83,6 +83,18 @@ class Skill(models.Model):
         ('fas fa-network-wired', 'Network'),
         ('fas fa-shield-alt', 'Security'),
         ('fas fa-project-diagram', 'Architecture'),
+        ('fas fa-feather-alt', 'Django'),  
+        ('fas fa-plug', 'REST API'),      
+        ('fas fa-stream', 'DRF'),         
+        ('fas fa-database', 'PostgreSQL'), 
+        ('fas fa-table', 'SQLite'), 
+        ('fas fa-flask', 'Flask'),
+        ('fas fa-database', 'MySQL'),
+        ('fas fa-database', 'MongoDB'),
+        ('fas fa-database', 'Firebase'),
+        ('fas fa-database', 'Redis'),
+        ('fas fa-database', 'Elasticsearch'),
+        ('fas fa-database', 'Cassandra'),
     ]
 
     name = models.CharField(max_length=100)  # Python, JavaScript etc.
