@@ -68,7 +68,7 @@ def customer_messages(request):
 def home(request):
     """Display home page with skills and projects."""
     skills = Skill.objects.select_related('skill_type').order_by('skill_type__name', 'name')
-    projects = Project.objects.all()
+    projects = Project.objects.all().order_by('-created_at')[:6]  # Show latest 6 projects
     return render(request, 'core/home.html', {
         'skills': skills,
         'projects': projects,
@@ -91,24 +91,7 @@ def projects(request):
     paginator = Paginator(project_list, 6)  # 6 projects per page
     page_number = request.GET.get('page')
     projects = paginator.get_page(page_number)
-    
     return render(request, 'core/projects.html', {'projects': projects})
-
-def all_projects(request):
-    project_list = Project.objects.all().order_by('-created_at')
-    paginator = Paginator(project_list, 3)  # Show 3 projects per page
-    page_number = request.GET.get('page')
-    projects = paginator.get_page(page_number)
-    return render(request, 'projects/all_projects.html', {'projects': projects})
-
-def projects_view(request):
-    project_list = Project.objects.all()  # Fetch all projects
-    paginator = Paginator(project_list, 6)  # Show 6 projects per page
-
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-
-    return render(request, 'projects.html', {'projects': page_obj})
 
 def project_detail(request, project_id):
     """Display project details."""
