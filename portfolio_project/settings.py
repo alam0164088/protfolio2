@@ -11,11 +11,8 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', get_random_secret_key())
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    'protfolio-tar6.onrender.com'
-]
+ALLOWED_HOSTS = ['protfolio2-wyzp.onrender.com', 'localhost', '127.0.0.1']
+
 
 # Application definition
 INSTALLED_APPS = [
@@ -60,7 +57,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'portfolio_project.wsgi.application'
+WSGI_APPLICATION = 'protfolio2-wyzp.wsgi.application'
 
 # Database
 DATABASES = {
