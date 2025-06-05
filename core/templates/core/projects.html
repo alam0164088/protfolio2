@@ -18,12 +18,12 @@
                 {% for project in projects %}
                 <div class="group bg-white rounded-xl shadow-soft hover:shadow-glow transition-all duration-300 transform hover:scale-105 overflow-hidden">
                     <!-- Project Images Slider -->
-                    <div class="project-slider relative h-64">
+                    <div class="project-slider relative h-[250px] w-full">
                         {% for image in project.images.all %}
-                        <div class="slide h-full">
+                        <div class="slide h-full w-full">
                             <img src="{{ image.image.url }}" 
                                  alt="{{ image.caption|default:project.title }}" 
-                                 class="w-full h-full object-cover">
+                                 class="w-full h-full object-cover object-center rounded-t-xl">
                             {% if image.caption %}
                             <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent text-white p-4">
                                 <p class="text-sm">{{ image.caption }}</p>
@@ -31,10 +31,10 @@
                             {% endif %}
                         </div>
                         {% empty %}
-                        <div class="slide h-full">
+                        <div class="slide h-full w-full">
                             <img src="{% static 'images/placeholder.jpg' %}" 
                                  alt="No image available" 
-                                 class="w-full h-full object-cover">
+                                 class="w-full h-full object-cover object-center rounded-t-xl">
                             <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent text-white p-4">
                                 <p class="text-sm">{{ project.title }}</p>
                             </div>
@@ -122,11 +122,14 @@
         </div>
     </div>
 </section>
+{% endblock %}
 
 {% block extra_js %}
+<!-- Slick JS (if not already loaded globally) -->
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize project sliders
     $('.project-slider').slick({
         dots: true,
         arrows: true,
@@ -149,5 +152,4 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
-{% endblock %}
 {% endblock %}
