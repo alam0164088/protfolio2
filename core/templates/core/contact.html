@@ -1,0 +1,345 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Contact Me{% endblock %}
+
+{% block content %}
+<section class="py-20 bg-gradient-to-br from-page-light via-page-DEFAULT to-page-dark">
+    <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-16">
+                <h1 class="text-4xl font-bold gradient-text mb-4">Get in Touch</h1>
+                <p class="text-lg text-gray-600">Have a question or want to work together?</p>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <div class="group bg-white rounded-xl p-6 shadow-soft hover:shadow-glow transition-all duration-300 transform hover:scale-105">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-primary-light/5 via-accent-light/5 to-primary-dark/5 group-hover:from-primary-light/10 group-hover:via-accent-light/10 group-hover:to-primary-dark/10 transition-all duration-300 rounded-xl"></div>
+                        <div class="relative text-center">
+                            <div class="w-16 h-16 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:from-primary-light group-hover:to-primary-dark transition-all duration-300">
+                                <i class="fas fa-envelope text-2xl text-primary-DEFAULT group-hover:text-white"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-900 group-hover:gradient-text mb-2">Email</h3>
+                            <p class="text-gray-600">alam01640882530@gmail.com</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group bg-white rounded-xl p-6 shadow-soft hover:shadow-glow transition-all duration-300 transform hover:scale-105">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-primary-light/5 via-accent-light/5 to-primary-dark/5 group-hover:from-primary-light/10 group-hover:via-accent-light/10 group-hover:to-primary-dark/10 transition-all duration-300 rounded-xl"></div>
+                        <div class="relative text-center">
+                            <div class="w-16 h-16 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:from-primary-light group-hover:to-primary-dark transition-all duration-300">
+                                <i class="fas fa-phone text-2xl text-primary-DEFAULT group-hover:text-white"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-900 group-hover:gradient-text mb-2">Phone</h3>
+                            <p class="text-gray-600">+880 1640882530</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group bg-white rounded-xl p-6 shadow-soft hover:shadow-glow transition-all duration-300 transform hover:scale-105">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-primary-light/5 via-accent-light/5 to-primary-dark/5 group-hover:from-primary-light/10 group-hover:via-accent-light/10 group-hover:to-primary-dark/10 transition-all duration-300 rounded-xl"></div>
+                        <div class="relative text-center">
+                            <div class="w-16 h-16 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:from-primary-light group-hover:to-primary-dark transition-all duration-300">
+                                <i class="fas fa-map-marker-alt text-2xl text-primary-DEFAULT group-hover:text-white"></i>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-900 group-hover:gradient-text mb-2">Location</h3>
+                            <p class="text-gray-600">Dhaka, Bangladesh</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="relative bg-white rounded-xl shadow-soft overflow-hidden">
+                <!-- Decorative Elements -->
+                <div class="absolute top-0 left-0 w-20 h-20 bg-gradient-to-br from-primary-light/10 to-primary-dark/10 rounded-br-full"></div>
+                <div class="absolute bottom-0 right-0 w-20 h-20 bg-gradient-to-tl from-primary-light/10 to-primary-dark/10 rounded-tl-full"></div>
+                
+                <div class="relative p-8">
+                    <div class="flex items-center space-x-4 mb-8">
+                        <div class="w-12 h-12 bg-gradient-to-r from-primary-light to-primary-dark rounded-full flex items-center justify-center">
+                            <i class="fas fa-envelope text-2xl text-white"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold gradient-text">Send Message</h2>
+                            <p class="text-gray-600">I'll get back to you as soon as possible</p>
+                        </div>
+                    </div>
+                    
+                    <form method="post" class="space-y-8 bg-white p-8 rounded-2xl shadow-soft">
+                        {% csrf_token %}
+                        
+                        {% if messages %}
+                        <div class="mb-6">
+                            {% for message in messages %}
+                            <div class="p-4 rounded-lg {% if message.tags == 'success' %}bg-gradient-to-r from-green-100 to-green-50 text-green-700 border border-green-300{% else %}bg-gradient-to-r from-red-100 to-red-50 text-red-700 border border-red-300{% endif %} flex items-center">
+                                <i class="fas {% if message.tags == 'success' %}fa-check-circle{% else %}fa-exclamation-circle{% endif %} mr-3 text-xl"></i>
+                                {{ message }}
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="form-group">
+                                <label for="{{ form.name.id_for_label }}" class="block mb-3">
+                                    <span class="text-base font-semibold text-gray-800 flex items-center">
+                                        <i class="fas fa-user text-primary-DEFAULT mr-2"></i>
+                                        Your Name
+                                    </span>
+                                </label>
+                                <div class="relative flex items-center group">
+                                    <div class="icon-container">
+                                        <i class="fas fa-user"></i>
+                                    </div>
+                                    {{ form.name }}
+                                </div>
+                                {% if form.name.errors %}
+                                <p class="text-red-600 text-sm mt-2 flex items-center">
+                                    <i class="fas fa-exclamation-circle mr-2"></i>
+                                    {{ form.name.errors.0 }}
+                                </p>
+                                {% endif %}
+                            </div>
+
+                            <div class="form-group">
+                                <label for="{{ form.email.id_for_label }}" class="block mb-3">
+                                    <span class="text-base font-semibold text-gray-800 flex items-center">
+                                        <i class="fas fa-envelope text-primary-DEFAULT mr-2"></i>
+                                        Your Email
+                                    </span>
+                                </label>
+                                <div class="relative flex items-center group">
+                                    <div class="icon-container">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    {{ form.email }}
+                                </div>
+                                {% if form.email.errors %}
+                                <p class="text-red-600 text-sm mt-2 flex items-center">
+                                    <i class="fas fa-exclamation-circle mr-2"></i>
+                                    {{ form.email.errors.0 }}
+                                </p>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="{{ form.subject.id_for_label }}" class="block mb-3">
+                                <span class="text-base font-semibold text-gray-800 flex items-center">
+                                    <i class="fas fa-heading text-primary-DEFAULT mr-2"></i>
+                                    Subject
+                                </span>
+                            </label>
+                            <div class="relative flex items-center group">
+                                <div class="icon-container">
+                                    <i class="fas fa-heading"></i>
+                                </div>
+                                {{ form.subject }}
+                            </div>
+                            {% if form.subject.errors %}
+                            <p class="text-red-600 text-sm mt-2 flex items-center">
+                                <i class="fas fa-exclamation-circle mr-2"></i>
+                                {{ form.subject.errors.0 }}
+                            </p>
+                            {% endif %}
+                        </div>
+
+                        <div class="form-group">
+                            <label for="{{ form.message.id_for_label }}" class="block mb-3">
+                                <span class="text-base font-semibold text-gray-800 flex items-center">
+                                    <i class="fas fa-comment text-primary-DEFAULT mr-2"></i>
+                                    Message
+                                </span>
+                            </label>
+                            <div class="relative flex group">
+                                <div class="icon-container message-icon">
+                                    <i class="fas fa-comment"></i>
+                                </div>
+                                {{ form.message }}
+                            </div>
+                            {% if form.message.errors %}
+                            <p class="text-red-600 text-sm mt-2 flex items-center">
+                                <i class="fas fa-exclamation-circle mr-2"></i>
+                                {{ form.message.errors.0 }}
+                            </p>
+                            {% endif %}
+                        </div>
+
+                        <div>
+                            <button type="submit" 
+                                    class="group w-full bg-gradient-to-r from-primary-light via-primary-DEFAULT to-primary-dark text-white py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-glow">
+                                <div class="flex items-center justify-center space-x-3">
+                                    <div class="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center">
+                                        <i class="fas fa-paper-plane group-hover:animate-bounce"></i>
+                                    </div>
+                                    <span class="text-lg font-semibold">Send Message</span>
+                                </div>
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Check Messages Link -->
+                    <div class="mt-6 text-center">
+                        <a href="{% url 'customer_messages' %}" 
+                           class="inline-flex items-center space-x-2 text-primary-DEFAULT hover:text-primary-dark transition-colors">
+                            <i class="fas fa-inbox"></i>
+                            <span>Check Your Messages</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Links -->
+            <div class="mt-16 text-center">
+                <h3 class="text-xl font-semibold gradient-text mb-6">Connect With Me</h3>
+                <div class="flex justify-center space-x-6">
+                    <a href="https://github.com/alam0164088" target="_blank"
+                       class="group w-14 h-14 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center text-primary-DEFAULT hover:from-primary-light hover:to-primary-dark hover:text-white transition-all duration-300 transform hover:scale-110 hover:shadow-glow">
+                        <i class="fab fa-github text-2xl group-hover:animate-bounce"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/nazmul-alam-803615325" target="_blank"
+                       class="group w-14 h-14 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center text-primary-DEFAULT hover:from-primary-light hover:to-primary-dark hover:text-white transition-all duration-300 transform hover:scale-110 hover:shadow-glow">
+                        <i class="fab fa-linkedin-in text-2xl group-hover:animate-bounce"></i>
+                    </a>
+                    <a href="#" target="_blank"
+                       class="group w-14 h-14 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center text-primary-DEFAULT hover:from-primary-light hover:to-primary-dark hover:text-white transition-all duration-300 transform hover:scale-110 hover:shadow-glow">
+                        <i class="fab fa-twitter text-2xl group-hover:animate-bounce"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Style form inputs */
+    input[type="text"],
+    input[type="email"],
+    textarea {
+        @apply w-full px-4 py-4 border-2 rounded-xl 
+               bg-white text-gray-900
+               focus:ring-2 focus:ring-primary-DEFAULT
+               transition-all duration-300;
+        border-image: linear-gradient(45deg, #6366f1, #ec4899, #0ea5e9) 1;
+        border-image-slice: 1;
+    }
+
+    input[type="text"]::placeholder,
+    input[type="email"]::placeholder,
+    textarea::placeholder {
+        @apply text-gray-400;
+    }
+
+    /* Icon container styles */
+    .icon-container {
+        @apply flex items-center justify-center w-12 h-12 mr-3 rounded-xl
+               bg-gradient-to-br from-gray-50 to-white
+               border-2 border-gray-200
+               transition-all duration-300;
+    }
+
+    .message-icon {
+        @apply self-start mt-1;
+    }
+
+    .icon-container i {
+        @apply text-xl text-gray-400 transition-all duration-300;
+    }
+
+    /* Form group styles */
+    .form-group {
+        @apply relative bg-white rounded-xl p-6 shadow-sm transition-all duration-300;
+    }
+
+    .form-group:hover {
+        @apply shadow-md transform -translate-y-1;
+    }
+
+    /* Icon hover effects */
+    .form-group:hover .icon-container {
+        @apply border-primary-light bg-gradient-to-br from-primary-50 to-white;
+    }
+
+    .form-group:hover .icon-container i {
+        @apply text-primary-DEFAULT scale-110 transform;
+    }
+
+    .form-group:focus-within .icon-container {
+        @apply border-primary-DEFAULT bg-gradient-to-br from-primary-100 to-white;
+    }
+
+    .form-group:focus-within .icon-container i {
+        @apply text-primary-DEFAULT scale-110 transform;
+    }
+
+    /* Textarea styles */
+    textarea {
+        @apply h-40 resize-none;
+    }
+
+    /* Input focus styles */
+    input:focus,
+    textarea:focus {
+        @apply shadow-lg;
+        border-image: linear-gradient(45deg, #6366f1, #ec4899, #0ea5e9) 1;
+        border-image-slice: 1;
+        box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
+    }
+
+    /* Error state */
+    input.error,
+    textarea.error {
+        @apply border-red-400 bg-red-50;
+        border-image: linear-gradient(45deg, #f87171, #ef4444, #dc2626) 1;
+    }
+
+    .form-group.error .icon-container {
+        @apply border-red-300 bg-red-50;
+    }
+
+    .form-group.error .icon-container i {
+        @apply text-red-400;
+    }
+
+    /* Success state */
+    input.valid,
+    textarea.valid {
+        @apply border-green-400 bg-green-50;
+        border-image: linear-gradient(45deg, #34d399, #10b981, #059669) 1;
+    }
+
+    .form-group.valid .icon-container {
+        @apply border-green-300 bg-green-50;
+    }
+
+    .form-group.valid .icon-container i {
+        @apply text-green-400;
+    }
+
+    /* Label styles */
+    .form-group label span {
+        @apply inline-flex items-center transition-all duration-300;
+    }
+
+    .form-group:hover label span {
+        @apply text-primary-DEFAULT;
+    }
+</style>
+
+<script>
+    // Add placeholder text to form fields
+    document.addEventListener('DOMContentLoaded', function() {
+        document.getElementById('id_name').placeholder = 'Enter your full name';
+        document.getElementById('id_email').placeholder = 'Enter your email address';
+        document.getElementById('id_subject').placeholder = 'What is your message about?';
+        document.getElementById('id_message').placeholder = 'Write your message here...';
+    });
+</script>
+{% endblock %}

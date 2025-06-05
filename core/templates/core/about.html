@@ -1,0 +1,271 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}About Me{% endblock %}
+
+{% block content %}
+<section class="py-20 bg-gradient-to-br from-page-light via-page-DEFAULT to-page-dark">
+    <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-16">
+                <h1 class="text-4xl font-bold gradient-text mb-4">About Me</h1>
+                <p class="text-lg text-gray-600">Get to know me better</p>
+            </div>
+
+            <!-- Profile Section -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
+                <!-- Profile Image -->
+                <div class="relative group">
+                    <div class="absolute inset-0 animate-gradient rounded-lg blur-lg opacity-50"></div>
+                    <img src="{% static 'img/mypic.jpg.jpg' %}" alt="Nazmul Alam" 
+                         class="relative w-full h-[500px] object-cover rounded-lg shadow-glow">
+                    <div class="absolute -bottom-6 -right-6 bg-gradient-to-r from-primary-light to-primary-dark text-white p-4 rounded-lg shadow-glow animate-bounce">
+                        <p class="text-2xl font-bold">2+ Years</p>
+                        <p class="text-sm">Experience</p>
+                    </div>
+                </div>
+
+                <!-- Profile Info -->
+                <div class="space-y-6">
+                    <h2 class="text-3xl font-bold gradient-text">
+                        Hi, I'm Nazmul Alam
+                    </h2>
+                    <p class="text-lg text-gray-600 leading-relaxed">
+                        I'm a passionate Full Stack Developer based in Dhaka, Bangladesh, specializing in building exceptional digital experiences. With expertise in Django and React, I create scalable and user-friendly web applications that solve real-world problems.
+                    </p>
+                    
+                    <!-- Personal Info -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-600">
+                        <div class="group flex items-center space-x-3 p-3 rounded-lg bg-white shadow-soft hover:shadow-glow transition-all duration-300">
+                            <div class="w-10 h-10 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center group-hover:from-primary-light/20 group-hover:to-primary-dark/20">
+                                <i class="fas fa-envelope text-primary-DEFAULT group-hover:gradient-text"></i>
+                            </div>
+                            <span class="group-hover:gradient-text">alam01640882530@gmail.com</span>
+                        </div>
+                        <div class="group flex items-center space-x-3 p-3 rounded-lg bg-white shadow-soft hover:shadow-glow transition-all duration-300">
+                            <div class="w-10 h-10 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center group-hover:from-primary-light/20 group-hover:to-primary-dark/20">
+                                <i class="fas fa-phone text-primary-DEFAULT group-hover:gradient-text"></i>
+                            </div>
+                            <span class="group-hover:gradient-text">+880 1640882530</span>
+                        </div>
+                        <div class="group flex items-center space-x-3 p-3 rounded-lg bg-white shadow-soft hover:shadow-glow transition-all duration-300">
+                            <div class="w-10 h-10 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center group-hover:from-primary-light/20 group-hover:to-primary-dark/20">
+                                <i class="fas fa-map-marker-alt text-primary-DEFAULT group-hover:gradient-text"></i>
+                            </div>
+                            <span class="group-hover:gradient-text">Dhaka, Bangladesh</span>
+                        </div>
+                        <div class="group flex items-center space-x-3 p-3 rounded-lg bg-white shadow-soft hover:shadow-glow transition-all duration-300">
+                            <div class="w-10 h-10 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center group-hover:from-primary-light/20 group-hover:to-primary-dark/20">
+                                <i class="fas fa-graduation-cap text-primary-DEFAULT group-hover:gradient-text"></i>
+                            </div>
+                            <span class="group-hover:gradient-text">BSc in CSE</span>
+                        </div>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="flex space-x-4">
+                        <a href="https://github.com/alam0164088" target="_blank"
+                           class="w-12 h-12 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center text-primary-DEFAULT hover:from-primary-light hover:to-primary-dark hover:text-white transition-all duration-300 transform hover:scale-110 hover:shadow-glow">
+                            <i class="fab fa-github text-xl"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/nazmul-alam-803615325" target="_blank"
+                           class="w-12 h-12 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center text-primary-DEFAULT hover:from-primary-light hover:to-primary-dark hover:text-white transition-all duration-300 transform hover:scale-110 hover:shadow-glow">
+                            <i class="fab fa-linkedin-in text-xl"></i>
+                        </a>
+                        <a href="#" target="_blank"
+                           class="w-12 h-12 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center text-primary-DEFAULT hover:from-primary-light hover:to-primary-dark hover:text-white transition-all duration-300 transform hover:scale-110 hover:shadow-glow">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                    </div>
+
+                    <!-- CV Download -->
+                    <div class="flex space-x-4">
+                        <a href="{% static 'img/nazmul13.pdf' %}" download
+                           class="group bg-gradient-to-r from-primary-light to-primary-dark text-white px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-glow">
+                            <i class="fas fa-download mr-2 group-hover:animate-bounce"></i>
+                            <span>Download CV</span>
+                        </a>
+                        <a href="{% url 'contact' %}"
+                           class="group gradient-border bg-white text-primary-DEFAULT px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-glow">
+                            <i class="fas fa-envelope mr-2 group-hover:animate-bounce"></i>
+                            <span>Contact Me</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education & Experience -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-20">
+                <!-- Education -->
+                <div class="group bg-white rounded-xl p-8 shadow-soft hover:shadow-glow transition-all duration-300">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-primary-light/5 via-accent-light/5 to-primary-dark/5 group-hover:from-primary-light/10 group-hover:via-accent-light/10 group-hover:to-primary-dark/10 transition-all duration-300 rounded-xl"></div>
+                        <div class="relative">
+                            <h3 class="text-2xl font-bold mb-6 flex items-center gradient-text">
+                                <i class="fas fa-graduation-cap mr-3"></i>
+                                Education
+                            </h3>
+                            <div class="space-y-6">
+                                <div class="relative pl-4 space-y-2">
+                                    <div class="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary-light to-primary-dark rounded"></div>
+                                    <h4 class="text-xl font-semibold text-gray-900 group-hover:gradient-text transition-all duration-300">BSc in Computer Science</h4>
+                                    <p class="text-gray-600">Gopalganj Science and Technology University</p>
+                                    
+                                </div>
+                                <div class="relative pl-4 space-y-2">
+                                    <div class="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary-light to-primary-dark rounded"></div>
+                                    <h4 class="text-xl font-semibold text-gray-900 group-hover:gradient-text transition-all duration-300">HSC in Science</h4>
+                                    <p class="text-gray-600">Royel Media College>
+                                 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Experience -->
+                <div class="group bg-white rounded-xl p-8 shadow-soft hover:shadow-glow transition-all duration-300">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-primary-light/5 via-accent-light/5 to-primary-dark/5 group-hover:from-primary-light/10 group-hover:via-accent-light/10 group-hover:to-primary-dark/10 transition-all duration-300 rounded-xl"></div>
+                        <div class="relative">
+                            <h3 class="text-2xl font-bold mb-6 flex items-center gradient-text">
+                                <i class="fas fa-briefcase mr-3"></i>
+                                Experience
+                            </h3>
+                            <div class="space-y-6">
+                                <div class="relative pl-4 space-y-2">
+                                    <div class="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary-light to-primary-dark rounded"></div>
+                                    <h4 class="text-xl font-semibold text-gray-900 group-hover:gradient-text transition-all duration-300">Full Stack Developer</h4>
+                                    <p class="text-gray-600">Freelance</p>
+                                    <p class="text-sm text-primary-DEFAULT">2022 - Present</p>
+                                    <ul class="list-none space-y-2 mt-2">
+                                        <li class="flex items-center text-gray-600">
+                                            <i class="fas fa-check text-primary-DEFAULT mr-2"></i>
+                                            Developed and maintained multiple web applications
+                                        </li>
+                                        <li class="flex items-center text-gray-600">
+                                            <i class="fas fa-check text-primary-DEFAULT mr-2"></i>
+                                            Worked with Django, React, and other modern technologies
+                                        </li>
+                                        <li class="flex items-center text-gray-600">
+                                            <i class="fas fa-check text-primary-DEFAULT mr-2"></i>
+                                            Collaborated with clients to deliver custom solutions
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="relative pl-4 space-y-2">
+                                    <div class="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary-light to-primary-dark rounded"></div>
+                                    <h4 class="text-xl font-semibold text-gray-900 group-hover:gradient-text transition-all duration-300">Web Development Intern</h4>
+                                    <p class="text-gray-600">Tech Company</p>
+                                    <p class="text-sm text-primary-DEFAULT">2021 - 2022</p>
+                                    <ul class="list-none space-y-2 mt-2">
+                                        <li class="flex items-center text-gray-600">
+                                            <i class="fas fa-check text-primary-DEFAULT mr-2"></i>
+                                            Assisted in developing web applications
+                                        </li>
+                                        <li class="flex items-center text-gray-600">
+                                            <i class="fas fa-check text-primary-DEFAULT mr-2"></i>
+                                            Learned modern web development practices
+                                        </li>
+                                        <li class="flex items-center text-gray-600">
+                                            <i class="fas fa-check text-primary-DEFAULT mr-2"></i>
+                                            Participated in team projects
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Skills Overview -->
+            <div class="text-center mb-20">
+                <h3 class="text-2xl font-bold gradient-text mb-6">My Skills Overview</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="group bg-white p-6 rounded-xl shadow-soft hover:shadow-glow transition-all duration-300 transform hover:scale-105">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-gradient-to-br from-primary-light/5 via-accent-light/5 to-primary-dark/5 group-hover:from-primary-light/10 group-hover:via-accent-light/10 group-hover:to-primary-dark/10 transition-all duration-300 rounded-xl"></div>
+                            <div class="relative">
+                                <i class="fab fa-python text-4xl text-primary-DEFAULT group-hover:gradient-text mb-4"></i>
+                                <h4 class="text-lg font-semibold text-gray-900 group-hover:gradient-text">Python/Django</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="group bg-white p-6 rounded-xl shadow-soft hover:shadow-glow transition-all duration-300 transform hover:scale-105">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-gradient-to-br from-primary-light/5 via-accent-light/5 to-primary-dark/5 group-hover:from-primary-light/10 group-hover:via-accent-light/10 group-hover:to-primary-dark/10 transition-all duration-300 rounded-xl"></div>
+                            <div class="relative">
+                                <i class="fab fa-js text-4xl text-primary-DEFAULT group-hover:gradient-text mb-4"></i>
+                                <h4 class="text-lg font-semibold text-gray-900 group-hover:gradient-text">JavaScript/React</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="group bg-white p-6 rounded-xl shadow-soft hover:shadow-glow transition-all duration-300 transform hover:scale-105">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-gradient-to-br from-primary-light/5 via-accent-light/5 to-primary-dark/5 group-hover:from-primary-light/10 group-hover:via-accent-light/10 group-hover:to-primary-dark/10 transition-all duration-300 rounded-xl"></div>
+                            <div class="relative">
+                                <i class="fas fa-database text-4xl text-primary-DEFAULT group-hover:gradient-text mb-4"></i>
+                                <h4 class="text-lg font-semibold text-gray-900 group-hover:gradient-text">SqLite/PostgreSQL</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="group bg-white p-6 rounded-xl shadow-soft hover:shadow-glow transition-all duration-300 transform hover:scale-105">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-gradient-to-br from-primary-light/5 via-accent-light/5 to-primary-dark/5 group-hover:from-primary-light/10 group-hover:via-accent-light/10 group-hover:to-primary-dark/10 transition-all duration-300 rounded-xl"></div>
+                            <div class="relative">
+                                <i class="fas fa-server text-4xl text-primary-DEFAULT group-hover:gradient-text mb-4"></i>
+                                <h4 class="text-lg font-semibold text-gray-900 group-hover:gradient-text">AI</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interests -->
+            <div class="text-center">
+                <h3 class="text-2xl font-bold gradient-text mb-6">My Interests</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <div class="group bg-white p-6 rounded-xl shadow-soft hover:shadow-glow transition-all duration-300 transform hover:scale-105">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-gradient-to-br from-primary-light/5 via-accent-light/5 to-primary-dark/5 group-hover:from-primary-light/10 group-hover:via-accent-light/10 group-hover:to-primary-dark/10 transition-all duration-300 rounded-xl"></div>
+                            <div class="relative">
+                                <i class="fas fa-code text-3xl text-primary-DEFAULT group-hover:gradient-text mb-2"></i>
+                                <p class="text-gray-600 group-hover:gradient-text">Coding</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="group bg-white p-6 rounded-xl shadow-soft hover:shadow-glow transition-all duration-300 transform hover:scale-105">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-gradient-to-br from-primary-light/5 via-accent-light/5 to-primary-dark/5 group-hover:from-primary-light/10 group-hover:via-accent-light/10 group-hover:to-primary-dark/10 transition-all duration-300 rounded-xl"></div>
+                            <div class="relative">
+                                <i class="fas fa-book text-3xl text-primary-DEFAULT group-hover:gradient-text mb-2"></i>
+                                <p class="text-gray-600 group-hover:gradient-text">Reading</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="group bg-white p-6 rounded-xl shadow-soft hover:shadow-glow transition-all duration-300 transform hover:scale-105">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-gradient-to-br from-primary-light/5 via-accent-light/5 to-primary-dark/5 group-hover:from-primary-light/10 group-hover:via-accent-light/10 group-hover:to-primary-dark/10 transition-all duration-300 rounded-xl"></div>
+                            <div class="relative">
+                                <i class="fas fa-music text-3xl text-primary-DEFAULT group-hover:gradient-text mb-2"></i>
+                                <p class="text-gray-600 group-hover:gradient-text">Music</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="group bg-white p-6 rounded-xl shadow-soft hover:shadow-glow transition-all duration-300 transform hover:scale-105">
+                        <div class="relative">
+                            <div class="absolute inset-0 bg-gradient-to-br from-primary-light/5 via-accent-light/5 to-primary-dark/5 group-hover:from-primary-light/10 group-hover:via-accent-light/10 group-hover:to-primary-dark/10 transition-all duration-300 rounded-xl"></div>
+                            <div class="relative">
+                                <i class="fas fa-plane text-3xl text-primary-DEFAULT group-hover:gradient-text mb-2"></i>
+                                <p class="text-gray-600 group-hover:gradient-text">Traveling</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

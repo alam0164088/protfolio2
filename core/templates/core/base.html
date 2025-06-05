@@ -1,0 +1,339 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %} - Nazmul's Portfolio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            light: '#818CF8', // Indigo-400
+                            DEFAULT: '#6366F1', // Indigo-500
+                            dark: '#4F46E5'    // Indigo-600
+                        },
+                        accent: {
+                            light: '#F9A8D4', // Pink-300
+                            DEFAULT: '#F472B6', // Pink-400
+                            dark: '#EC4899'    // Pink-500
+                        },
+                        page: {
+                            light: '#F0F9FF', // Sky-50
+                            DEFAULT: '#E0F2FE', // Sky-100
+                            dark: '#BAE6FD'    // Sky-200
+                        },
+                        nav: {
+                            bg: 'rgba(255, 255, 255, 0.9)',
+                            text: '#475569',    // Slate-600
+                            hover: '#6366F1'    // Primary color
+                        },
+                        card: {
+                            bg: '#FFFFFF',
+                            border: '#E2E8F0',  // Slate-200
+                            hover: '#F8FAFC'    // Slate-50
+                        },
+                        footer: {
+                            bg: '#1E293B',      // Slate-800
+                            text: '#F1F5F9',    // Slate-100
+                            hover: '#CBD5E1'     // Slate-300
+                        },
+                        gradient: {
+                            start: '#818CF8',   // Indigo-400
+                            mid: '#F472B6',     // Pink-400
+                            end: '#38BDF8'      // Sky-400
+                        }
+                    },
+                    boxShadow: {
+                        'soft': '0 2px 15px -3px rgba(0, 0, 0, 0.07), 0 10px 20px -2px rgba(0, 0, 0, 0.04)',
+                        'glow': '0 0 15px rgba(99, 102, 241, 0.5)'
+                    },
+                    animation: {
+                        'gradient': 'gradient 8s ease infinite',
+                        'glow': 'glow 2s ease-in-out infinite',
+                        'shimmer': 'shimmer 2s linear infinite',
+                        'scale': 'scale 0.3s ease-in-out'
+                    },
+                    keyframes: {
+                        gradient: {
+                            '0%, 100%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'left center'
+                            },
+                            '50%': {
+                                'background-size': '200% 200%',
+                                'background-position': 'right center'
+                            }
+                        },
+                        glow: {
+                            '0%, 100%': {
+                                'box-shadow': '0 0 15px rgba(99, 102, 241, 0.5)'
+                            },
+                            '50%': {
+                                'box-shadow': '0 0 30px rgba(99, 102, 241, 0.8)'
+                            }
+                        },
+                        shimmer: {
+                            '0%': {
+                                'background': 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent)',
+                                'transform': 'translateX(-100%)'
+                            },
+                            '100%': {
+                                'background': 'linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent)',
+                                'transform': 'translateX(100%)'
+                            }
+                        },
+                        scale: {
+                            '0%': { transform: 'scale(1)' },
+                            '50%': { transform: 'scale(1.02)' },
+                            '100%': { transform: 'scale(1)' }
+                        }
+                    },
+                    scale: {
+                        '102': '1.02'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .gradient-text {
+            background: linear-gradient(135deg, #818CF8, #F472B6, #38BDF8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% 200%;
+            animation: gradient 8s ease infinite;
+        }
+
+        .gradient-border {
+            position: relative;
+        }
+
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 0.75rem;
+            padding: 2px;
+            background: linear-gradient(135deg, #818CF8, #F472B6, #38BDF8);
+            -webkit-mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            mask: 
+                linear-gradient(#fff 0 0) content-box, 
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+        }
+
+        .animate-gradient {
+            background: linear-gradient(135deg, #818CF8, #F472B6, #38BDF8);
+            background-size: 200% 200%;
+            animation: gradient 8s ease infinite;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Slick Carousel CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+    {% block extra_css %}{% endblock %}
+</head>
+<body class="bg-gradient-to-br from-page-light via-page-DEFAULT to-page-dark min-h-screen">
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-nav-bg shadow-soft backdrop-blur-md">
+        <div class="container mx-auto px-4">
+            <div class="flex items-center justify-between h-16">
+                <!-- Logo -->
+                <a href="{% url 'home' %}" class="flex items-center space-x-3 pl-4">
+                    <i class="fas fa-code text-2xl gradient-text"></i>
+                    <span class="font-bold text-xl gradient-text tracking-wide">Nazmul</span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-12">
+                    <a href="{% url 'home' %}" class="nav-link group flex items-center space-x-3 text-nav-text hover:text-primary-DEFAULT transition-all duration-300">
+                        <i class="fas fa-home text-lg group-hover:scale-110 transition-transform"></i>
+                        <span class="font-medium">Home</span>
+                    </a>
+                    <a href="{% url 'about' %}" class="nav-link group flex items-center space-x-3 text-nav-text hover:text-primary-DEFAULT transition-all duration-300">
+                        <i class="fas fa-user text-lg group-hover:scale-110 transition-transform"></i>
+                        <span class="font-medium">About</span>
+                    </a>
+                    <a href="{% url 'projects' %}" class="nav-link group flex items-center space-x-3 text-nav-text hover:text-primary-DEFAULT transition-all duration-300">
+                        <i class="fas fa-code text-lg group-hover:scale-110 transition-transform"></i>
+                        <span class="font-medium">Projects</span>
+                    </a>
+                    <a href="{% url 'services' %}" class="nav-link group flex items-center space-x-3 text-nav-text hover:text-primary-DEFAULT transition-all duration-300">
+                        <i class="fas fa-cog text-lg group-hover:scale-110 transition-transform"></i>
+                        <span class="font-medium">Services</span>
+                    </a>
+                    <a href="{% url 'contact' %}" class="nav-link group flex items-center space-x-3 text-nav-text hover:text-primary-DEFAULT transition-all duration-300 pr-4">
+                        <i class="fas fa-envelope text-lg group-hover:scale-110 transition-transform"></i>
+                        <span class="font-medium">Contact</span>
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button id="navToggle" class="md:hidden text-nav-text hover:text-primary-DEFAULT transition-all duration-300 pr-4">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <div id="mobileNav" class="hidden md:hidden py-4">
+                <div class="flex flex-col space-y-6 px-4">
+                    <a href="{% url 'home' %}" class="nav-link flex items-center space-x-3 text-nav-text hover:text-primary-DEFAULT transition-all duration-300">
+                        <i class="fas fa-home text-lg"></i>
+                        <span class="font-medium">Home</span>
+                    </a>
+                    <a href="{% url 'about' %}" class="nav-link flex items-center space-x-3 text-nav-text hover:text-primary-DEFAULT transition-all duration-300">
+                        <i class="fas fa-user text-lg"></i>
+                        <span class="font-medium">About</span>
+                    </a>
+                    <a href="{% url 'projects' %}" class="nav-link flex items-center space-x-3 text-nav-text hover:text-primary-DEFAULT transition-all duration-300">
+                        <i class="fas fa-code text-lg"></i>
+                        <span class="font-medium">Projects</span>
+                    </a>
+                    <a href="{% url 'services' %}" class="nav-link flex items-center space-x-3 text-nav-text hover:text-primary-DEFAULT transition-all duration-300">
+                        <i class="fas fa-cog text-lg"></i>
+                        <span class="font-medium">Services</span>
+                    </a>
+                    <a href="{% url 'contact' %}" class="nav-link flex items-center space-x-3 text-nav-text hover:text-primary-DEFAULT transition-all duration-300">
+                        <i class="fas fa-envelope text-lg"></i>
+                        <span class="font-medium">Contact</span>
+                    </a>
+                    <a href="{% url 'customer_messages' %}" class="nav-link flex items-center space-x-3 text-nav-text hover:text-primary-DEFAULT transition-all duration-300">
+                        <i class="fas fa-comments text-lg"></i>
+                        <span class="font-medium">Messages</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-16">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-footer-bg text-footer-text mt-20">
+        <div class="container mx-auto px-4 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- About Column -->
+                <div class="space-y-4">
+                    <h3 class="text-xl font-bold gradient-text">Nazmul Alam</h3>
+                    <p class="text-gray-300">Full Stack Developer specializing in Django and React. Creating modern, responsive web applications.</p>
+                    <div class="flex space-x-4">
+                        <a href="//github.com/alam0164088" class="text-gray-300 hover:text-gradient-start transition-all duration-300 hover:scale-110" aria-label="GitHub">
+                            <i class="fab fa-github text-2xl"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/nazmul-alam-803615325" class="text-gray-300 hover:text-gradient-mid transition-all duration-300 hover:scale-110" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin text-2xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-300 hover:text-gradient-end transition-all duration-300 hover:scale-110" aria-label="Twitter">
+                            <i class="fab fa-twitter text-2xl"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="space-y-4">
+                    <h3 class="text-xl font-bold gradient-text">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li>
+                            <a href="{% url 'home' %}" class="text-gray-300 hover:text-gradient-start transition-all duration-300 hover:translate-x-2 inline-flex items-center space-x-2">
+                                <i class="fas fa-chevron-right text-sm"></i>
+                                <span>Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'about' %}" class="text-gray-300 hover:text-gradient-mid transition-all duration-300 hover:translate-x-2 inline-flex items-center space-x-2">
+                                <i class="fas fa-chevron-right text-sm"></i>
+                                <span>About</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'projects' %}" class="text-gray-300 hover:text-gradient-end transition-all duration-300 hover:translate-x-2 inline-flex items-center space-x-2">
+                                <i class="fas fa-chevron-right text-sm"></i>
+                                <span>Projects</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'contact' %}" class="text-gray-300 hover:text-gradient-start transition-all duration-300 hover:translate-x-2 inline-flex items-center space-x-2">
+                                <i class="fas fa-chevron-right text-sm"></i>
+                                <span>Contact</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="space-y-4">
+                    <h3 class="text-xl font-bold gradient-text">Contact Me</h3>
+                    <div class="space-y-2">
+                        <p class="flex items-center space-x-2 text-gray-300 group">
+                            <i class="fas fa-envelope text-lg group-hover:text-gradient-start transition-all duration-300"></i>
+                            <span class="group-hover:text-gradient-start transition-all duration-300">alam01640882530@gmail.com</span>
+                        </p>
+                        <p class="flex items-center space-x-2 text-gray-300 group">
+                            <i class="fas fa-phone text-lg group-hover:text-gradient-mid transition-all duration-300"></i>
+                            <span class="group-hover:text-gradient-mid transition-all duration-300">+880 1640882530</span>
+                        </p>
+                        <p class="flex items-center space-x-2 text-gray-300 group">
+                            <i class="fas fa-map-marker-alt text-lg group-hover:text-gradient-end transition-all duration-300"></i>
+                            <span class="group-hover:text-gradient-end transition-all duration-300">Dhaka, Bangladesh</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright -->
+        <div class="border-t border-gray-700">
+            <div class="container mx-auto px-4 py-4">
+                <p class="text-center text-gray-400">&copy; {% now "Y" %} Nazmul Alam. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mobile Menu Toggle
+        const navToggle = document.getElementById('navToggle');
+        const mobileNav = document.getElementById('mobileNav');
+        
+        navToggle.addEventListener('click', function() {
+            mobileNav.classList.toggle('hidden');
+            const icon = this.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Initialize Slick Slider if exists
+        if($('.project-slider').length) {
+            $('.project-slider').slick({
+                dots: true,
+                infinite: true,
+                speed: 500,
+                fade: true,
+                cssEase: 'linear',
+                autoplay: true,
+                autoplaySpeed: 3000,
+                arrows: true
+            });
+        }
+    });
+    </script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,34 @@
+portfolio_project/
+├── core/
+│   ├── migrations/
+│   │   └── __init__.py
+│   ├── static/
+│   │   └── style.css
+│   ├── templates/
+│   │   └── core/
+│   │       ├── about.html
+│   │       ├── base.html
+│   │       ├── contace_reply_form.html
+│   │       ├── contact.html
+│   │       ├── contact_replies.html
+│   │       ├── customer_masseges.html
+│   │       ├── home.html
+│   │       ├── projects.html
+│   │       ├── services.html
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── tests.py
+│   ├── urls.py
+│   ├── views.py
+├── media/
+├── portfolio_project/
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   ├── wsgi.py
+├── venv/
+├── manage.py
+├── requirements.txt

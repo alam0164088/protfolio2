@@ -1,0 +1,255 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Services{% endblock %}
+
+{% block content %}
+<section class="py-20 bg-gradient-to-br from-page-light via-page-DEFAULT to-page-dark">
+    <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-16">
+                <h1 class="text-4xl font-bold gradient-text mb-4">My Services</h1>
+                <p class="text-lg text-gray-600">Professional solutions for your digital needs</p>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Web Development -->
+                <div class="group bg-white rounded-xl p-8 shadow-soft hover:shadow-glow transition-all duration-300 transform hover:scale-105">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-primary-light/5 via-accent-light/5 to-primary-dark/5 group-hover:from-primary-light/10 group-hover:via-accent-light/10 group-hover:to-primary-dark/10 transition-all duration-300 rounded-xl"></div>
+                        <div class="relative">
+                            <div class="w-16 h-16 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center mb-6 group-hover:from-primary-light group-hover:to-primary-dark transition-all duration-300">
+                                <i class="fas fa-code text-3xl text-primary-DEFAULT group-hover:text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 group-hover:gradient-text mb-4">Web Development</h3>
+                            <p class="text-gray-600 mb-6">
+                                Custom web applications built with modern technologies like Django and React. 
+                                From simple websites to complex web applications.
+                            </p>
+                            <ul class="space-y-3">
+                                <li class="flex items-center space-x-3 group/item">
+                                    <div class="w-6 h-6 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center group-hover/item:from-primary-light group-hover/item:to-primary-dark transition-all duration-300">
+                                        <i class="fas fa-check text-sm text-primary-DEFAULT group-hover/item:text-white"></i>
+                                    </div>
+                                    <span class="text-gray-600">Responsive Design</span>
+                                </li>
+                                <li class="flex items-center space-x-3 group/item">
+                                    <div class="w-6 h-6 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center group-hover/item:from-primary-light group-hover/item:to-primary-dark transition-all duration-300">
+                                        <i class="fas fa-check text-sm text-primary-DEFAULT group-hover/item:text-white"></i>
+                                    </div>
+                                    <span class="text-gray-600">API Development</span>
+                                </li>
+                                <li class="flex items-center space-x-3 group/item">
+                                    <div class="w-6 h-6 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center group-hover/item:from-primary-light group-hover/item:to-primary-dark transition-all duration-300">
+                                        <i class="fas fa-check text-sm text-primary-DEFAULT group-hover/item:text-white"></i>
+                                    </div>
+                                    <span class="text-gray-600">Database Integration</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Backend Development -->
+                <div class="group bg-white rounded-xl p-8 shadow-soft hover:shadow-glow transition-all duration-300 transform hover:scale-105">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-primary-light/5 via-accent-light/5 to-primary-dark/5 group-hover:from-primary-light/10 group-hover:via-accent-light/10 group-hover:to-primary-dark/10 transition-all duration-300 rounded-xl"></div>
+                        <div class="relative">
+                            <div class="w-16 h-16 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center mb-6 group-hover:from-primary-light group-hover:to-primary-dark transition-all duration-300">
+                                <i class="fas fa-server text-3xl text-primary-DEFAULT group-hover:text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 group-hover:gradient-text mb-4">Backend Development</h3>
+                            <p class="text-gray-600 mb-6">
+                                Robust and scalable backend solutions using Django and Python. 
+                                Secure, efficient, and maintainable code.
+                            </p>
+                            <ul class="space-y-3">
+                                <li class="flex items-center space-x-3 group/item">
+                                    <div class="w-6 h-6 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center group-hover/item:from-primary-light group-hover/item:to-primary-dark transition-all duration-300">
+                                        <i class="fas fa-check text-sm text-primary-DEFAULT group-hover/item:text-white"></i>
+                                    </div>
+                                    <span class="text-gray-600">RESTful APIs</span>
+                                </li>
+                                <li class="flex items-center space-x-3 group/item">
+                                    <div class="w-6 h-6 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center group-hover/item:from-primary-light group-hover/item:to-primary-dark transition-all duration-300">
+                                        <i class="fas fa-check text-sm text-primary-DEFAULT group-hover/item:text-white"></i>
+                                    </div>
+                                    <span class="text-gray-600">Database Design</span>
+                                </li>
+                                <li class="flex items-center space-x-3 group/item">
+                                    <div class="w-6 h-6 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center group-hover/item:from-primary-light group-hover/item:to-primary-dark transition-all duration-300">
+                                        <i class="fas fa-check text-sm text-primary-DEFAULT group-hover/item:text-white"></i>
+                                    </div>
+                                    <span class="text-gray-600">Authentication & Security</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Frontend Development -->
+                <div class="group bg-white rounded-xl p-8 shadow-soft hover:shadow-glow transition-all duration-300 transform hover:scale-105">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-primary-light/5 via-accent-light/5 to-primary-dark/5 group-hover:from-primary-light/10 group-hover:via-accent-light/10 group-hover:to-primary-dark/10 transition-all duration-300 rounded-xl"></div>
+                        <div class="relative">
+                            <div class="w-16 h-16 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center mb-6 group-hover:from-primary-light group-hover:to-primary-dark transition-all duration-300">
+                                <i class="fas fa-paint-brush text-3xl text-primary-DEFAULT group-hover:text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 group-hover:gradient-text mb-4">Frontend Development</h3>
+                            <p class="text-gray-600 mb-6">
+                                Beautiful and interactive user interfaces using modern frontend technologies.
+                                Responsive and accessible designs.
+                            </p>
+                            <ul class="space-y-3">
+                                <li class="flex items-center space-x-3 group/item">
+                                    <div class="w-6 h-6 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center group-hover/item:from-primary-light group-hover/item:to-primary-dark transition-all duration-300">
+                                        <i class="fas fa-check text-sm text-primary-DEFAULT group-hover/item:text-white"></i>
+                                    </div>
+                                    <span class="text-gray-600">React Development</span>
+                                </li>
+                                <li class="flex items-center space-x-3 group/item">
+                                    <div class="w-6 h-6 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center group-hover/item:from-primary-light group-hover/item:to-primary-dark transition-all duration-300">
+                                        <i class="fas fa-check text-sm text-primary-DEFAULT group-hover/item:text-white"></i>
+                                    </div>
+                                    <span class="text-gray-600">UI/UX Design</span>
+                                </li>
+                                <li class="flex items-center space-x-3 group/item">
+                                    <div class="w-6 h-6 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center group-hover/item:from-primary-light group-hover/item:to-primary-dark transition-all duration-300">
+                                        <i class="fas fa-check text-sm text-primary-DEFAULT group-hover/item:text-white"></i>
+                                    </div>
+                                    <span class="text-gray-600">Mobile-First Approach</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Database Design -->
+                <div class="group bg-white rounded-xl p-8 shadow-soft hover:shadow-glow transition-all duration-300 transform hover:scale-105">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-primary-light/5 via-accent-light/5 to-primary-dark/5 group-hover:from-primary-light/10 group-hover:via-accent-light/10 group-hover:to-primary-dark/10 transition-all duration-300 rounded-xl"></div>
+                        <div class="relative">
+                            <div class="w-16 h-16 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center mb-6 group-hover:from-primary-light group-hover:to-primary-dark transition-all duration-300">
+                                <i class="fas fa-database text-3xl text-primary-DEFAULT group-hover:text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 group-hover:gradient-text mb-4">Database Design</h3>
+                            <p class="text-gray-600 mb-6">
+                                Efficient database design and optimization for your applications.
+                                Both SQL and NoSQL solutions.
+                            </p>
+                            <ul class="space-y-3">
+                                <li class="flex items-center space-x-3 group/item">
+                                    <div class="w-6 h-6 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center group-hover/item:from-primary-light group-hover/item:to-primary-dark transition-all duration-300">
+                                        <i class="fas fa-check text-sm text-primary-DEFAULT group-hover/item:text-white"></i>
+                                    </div>
+                                    <span class="text-gray-600">Schema Design</span>
+                                </li>
+                                <li class="flex items-center space-x-3 group/item">
+                                    <div class="w-6 h-6 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center group-hover/item:from-primary-light group-hover/item:to-primary-dark transition-all duration-300">
+                                        <i class="fas fa-check text-sm text-primary-DEFAULT group-hover/item:text-white"></i>
+                                    </div>
+                                    <span class="text-gray-600">Performance Optimization</span>
+                                </li>
+                                <li class="flex items-center space-x-3 group/item">
+                                    <div class="w-6 h-6 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center group-hover/item:from-primary-light group-hover/item:to-primary-dark transition-all duration-300">
+                                        <i class="fas fa-check text-sm text-primary-DEFAULT group-hover/item:text-white"></i>
+                                    </div>
+                                    <span class="text-gray-600">Data Migration</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- API Development -->
+                <div class="group bg-white rounded-xl p-8 shadow-soft hover:shadow-glow transition-all duration-300 transform hover:scale-105">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-primary-light/5 via-accent-light/5 to-primary-dark/5 group-hover:from-primary-light/10 group-hover:via-accent-light/10 group-hover:to-primary-dark/10 transition-all duration-300 rounded-xl"></div>
+                        <div class="relative">
+                            <div class="w-16 h-16 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center mb-6 group-hover:from-primary-light group-hover:to-primary-dark transition-all duration-300">
+                                <i class="fas fa-plug text-3xl text-primary-DEFAULT group-hover:text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 group-hover:gradient-text mb-4">API Development</h3>
+                            <p class="text-gray-600 mb-6">
+                                Design and development of RESTful APIs for your applications.
+                                Secure and well-documented endpoints.
+                            </p>
+                            <ul class="space-y-3">
+                                <li class="flex items-center space-x-3 group/item">
+                                    <div class="w-6 h-6 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center group-hover/item:from-primary-light group-hover/item:to-primary-dark transition-all duration-300">
+                                        <i class="fas fa-check text-sm text-primary-DEFAULT group-hover/item:text-white"></i>
+                                    </div>
+                                    <span class="text-gray-600">REST Architecture</span>
+                                </li>
+                                <li class="flex items-center space-x-3 group/item">
+                                    <div class="w-6 h-6 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center group-hover/item:from-primary-light group-hover/item:to-primary-dark transition-all duration-300">
+                                        <i class="fas fa-check text-sm text-primary-DEFAULT group-hover/item:text-white"></i>
+                                    </div>
+                                    <span class="text-gray-600">API Documentation</span>
+                                </li>
+                                <li class="flex items-center space-x-3 group/item">
+                                    <div class="w-6 h-6 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center group-hover/item:from-primary-light group-hover/item:to-primary-dark transition-all duration-300">
+                                        <i class="fas fa-check text-sm text-primary-DEFAULT group-hover/item:text-white"></i>
+                                    </div>
+                                    <span class="text-gray-600">Integration Support</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Maintenance & Support -->
+                <div class="group bg-white rounded-xl p-8 shadow-soft hover:shadow-glow transition-all duration-300 transform hover:scale-105">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-primary-light/5 via-accent-light/5 to-primary-dark/5 group-hover:from-primary-light/10 group-hover:via-accent-light/10 group-hover:to-primary-dark/10 transition-all duration-300 rounded-xl"></div>
+                        <div class="relative">
+                            <div class="w-16 h-16 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center mb-6 group-hover:from-primary-light group-hover:to-primary-dark transition-all duration-300">
+                                <i class="fas fa-wrench text-3xl text-primary-DEFAULT group-hover:text-white"></i>
+                            </div>
+                            <h3 class="text-xl font-bold text-gray-900 group-hover:gradient-text mb-4">Maintenance & Support</h3>
+                            <p class="text-gray-600 mb-6">
+                                Ongoing maintenance and support for your web applications.
+                                Regular updates and bug fixes.
+                            </p>
+                            <ul class="space-y-3">
+                                <li class="flex items-center space-x-3 group/item">
+                                    <div class="w-6 h-6 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center group-hover/item:from-primary-light group-hover/item:to-primary-dark transition-all duration-300">
+                                        <i class="fas fa-check text-sm text-primary-DEFAULT group-hover/item:text-white"></i>
+                                    </div>
+                                    <span class="text-gray-600">Regular Updates</span>
+                                </li>
+                                <li class="flex items-center space-x-3 group/item">
+                                    <div class="w-6 h-6 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center group-hover/item:from-primary-light group-hover/item:to-primary-dark transition-all duration-300">
+                                        <i class="fas fa-check text-sm text-primary-DEFAULT group-hover/item:text-white"></i>
+                                    </div>
+                                    <span class="text-gray-600">Bug Fixing</span>
+                                </li>
+                                <li class="flex items-center space-x-3 group/item">
+                                    <div class="w-6 h-6 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center group-hover/item:from-primary-light group-hover/item:to-primary-dark transition-all duration-300">
+                                        <i class="fas fa-check text-sm text-primary-DEFAULT group-hover/item:text-white"></i>
+                                    </div>
+                                    <span class="text-gray-600">Performance Monitoring</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="mt-16 text-center">
+                <h3 class="text-2xl font-bold gradient-text mb-6">Ready to Start Your Project?</h3>
+                <a href="{% url 'contact' %}" 
+                   class="group inline-flex items-center space-x-3 bg-gradient-to-r from-primary-light to-primary-dark text-white px-8 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-glow">
+                    <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center">
+                        <i class="fas fa-paper-plane text-xl group-hover:animate-bounce"></i>
+                    </div>
+                    <span class="font-semibold">Get in Touch</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

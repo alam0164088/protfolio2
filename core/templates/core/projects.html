@@ -1,0 +1,153 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Projects{% endblock %}
+
+{% block content %}
+<section class="py-20 bg-gradient-to-br from-page-light via-page-DEFAULT to-page-dark">
+    <div class="container mx-auto px-4">
+        <div class="max-w-6xl mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-16">
+                <h1 class="text-4xl font-bold gradient-text mb-4">My Projects</h1>
+                <p class="text-lg text-gray-600">A showcase of my best work</p>
+            </div>
+
+            <!-- Projects Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {% for project in projects %}
+                <div class="group bg-white rounded-xl shadow-soft hover:shadow-glow transition-all duration-300 transform hover:scale-105 overflow-hidden">
+                    <!-- Project Images Slider -->
+                    <div class="project-slider relative h-64">
+                        {% for image in project.images.all %}
+                        <div class="slide h-full">
+                            <img src="{{ image.image.url }}" 
+                                 alt="{{ image.caption|default:project.title }}" 
+                                 class="w-full h-full object-cover">
+                            {% if image.caption %}
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent text-white p-4">
+                                <p class="text-sm">{{ image.caption }}</p>
+                            </div>
+                            {% endif %}
+                        </div>
+                        {% empty %}
+                        <div class="slide h-full">
+                            <img src="{% static 'images/placeholder.jpg' %}" 
+                                 alt="No image available" 
+                                 class="w-full h-full object-cover">
+                            <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent text-white p-4">
+                                <p class="text-sm">{{ project.title }}</p>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Project Info -->
+                    <div class="p-6 relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-primary-light/5 via-accent-light/5 to-primary-dark/5 group-hover:from-primary-light/10 group-hover:via-accent-light/10 group-hover:to-primary-dark/10 transition-all duration-300"></div>
+                        <div class="relative space-y-4">
+                            <h3 class="text-xl font-semibold text-gray-900 group-hover:gradient-text transition-all duration-300">{{ project.title }}</h3>
+                            <p class="text-gray-600">{{ project.description|truncatewords:30 }}</p>
+                            
+                            <!-- Technologies Used -->
+                            <div class="flex flex-wrap gap-2">
+                                {% for tech in project.technologies.all %}
+                                <span class="px-3 py-1 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 text-primary-DEFAULT rounded-full text-sm group-hover:from-primary-light group-hover:to-primary-dark group-hover:text-white transition-all duration-300">
+                                    {{ tech.name }}
+                                </span>
+                                {% endfor %}
+                            </div>
+
+                            <!-- Project Links -->
+                            <div class="flex flex-wrap gap-4 pt-4">
+                                {% if project.frontend_demo %}
+                                <a href="{{ project.frontend_demo }}" 
+                                   class="flex-1 text-center bg-gradient-to-r from-primary-light to-primary-dark text-white px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-glow"
+                                   target="_blank">
+                                    <i class="fas fa-desktop mr-2"></i>
+                                    Frontend
+                                </a>
+                                {% endif %}
+                                {% if project.backend_demo %}
+                                <a href="{{ project.backend_demo }}" 
+                                   class="flex-1 text-center bg-gradient-to-r from-accent-light to-accent-dark text-white px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-glow"
+                                   target="_blank">
+                                    <i class="fas fa-server mr-2"></i>
+                                    Backend
+                                </a>
+                                {% endif %}
+                                <a href="{% url 'project_detail' project.id %}" 
+                                   class="flex-1 text-center gradient-border bg-white text-primary-DEFAULT px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-glow">
+                                    <i class="fas fa-info-circle mr-2"></i>
+                                    Details
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="col-span-full">
+                    <div class="text-center py-12 bg-white rounded-xl shadow-soft">
+                        <i class="fas fa-folder-open text-6xl text-primary-DEFAULT mb-4"></i>
+                        <p class="text-gray-600">No projects available at the moment.</p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Pagination -->
+            {% if is_paginated %}
+            <div class="mt-12 flex justify-center space-x-2">
+                {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}" 
+                   class="group px-4 py-2 bg-white text-primary-DEFAULT rounded-lg shadow-soft hover:shadow-glow transition-all duration-300 transform hover:scale-105">
+                    <i class="fas fa-chevron-left mr-2 group-hover:animate-bounce"></i>
+                    Previous
+                </a>
+                {% endif %}
+
+                <span class="px-4 py-2 bg-gradient-to-r from-primary-light to-primary-dark text-white rounded-lg shadow-glow">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                </span>
+
+                {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" 
+                   class="group px-4 py-2 bg-white text-primary-DEFAULT rounded-lg shadow-soft hover:shadow-glow transition-all duration-300 transform hover:scale-105">
+                    Next
+                    <i class="fas fa-chevron-right ml-2 group-hover:animate-bounce"></i>
+                </a>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize project sliders
+    $('.project-slider').slick({
+        dots: true,
+        arrows: true,
+        infinite: true,
+        speed: 500,
+        fade: true,
+        cssEase: 'linear',
+        autoplay: true,
+        autoplaySpeed: 3000,
+        prevArrow: '<button type="button" class="slick-prev absolute left-0 z-10 h-full px-4 text-white bg-gradient-to-r from-black/30 to-transparent hover:from-black/50 transition-colors"><i class="fas fa-chevron-left"></i></button>',
+        nextArrow: '<button type="button" class="slick-next absolute right-0 z-10 h-full px-4 text-white bg-gradient-to-l from-black/30 to-transparent hover:from-black/50 transition-colors"><i class="fas fa-chevron-right"></i></button>',
+        responsive: [
+            {
+                breakpoint: 768,
+                settings: {
+                    arrows: false
+                }
+            }
+        ]
+    });
+});
+</script>
+{% endblock %}
+{% endblock %}

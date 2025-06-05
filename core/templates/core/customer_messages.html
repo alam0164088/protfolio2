@@ -1,0 +1,132 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %}Your Messages{% endblock %}
+
+{% block content %}
+<section class="py-20 bg-gradient-to-br from-page-light via-page-DEFAULT to-page-dark">
+    <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-16">
+                <h1 class="text-4xl font-bold gradient-text mb-4">Your Messages</h1>
+                <p class="text-lg text-gray-600">View your messages and our responses</p>
+            </div>
+
+            <!-- Email Search Form -->
+            <div class="bg-white rounded-xl shadow-soft p-8 mb-16">
+                <form method="post" class="space-y-6">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="{{ form.email.id_for_label }}" class="block mb-3">
+                            <span class="text-base font-semibold text-gray-800 flex items-center">
+                                <i class="fas fa-envelope text-primary-DEFAULT mr-2"></i>
+                                Enter Your Email
+                            </span>
+                        </label>
+                        <div class="relative flex items-center">
+                            <div class="icon-container">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            {{ form.email }}
+                        </div>
+                        {% if form.email.errors %}
+                        <p class="text-red-600 text-sm mt-2">{{ form.email.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+                    <button type="submit" 
+                            class="w-full bg-gradient-to-r from-primary-light via-primary-DEFAULT to-primary-dark text-white py-4 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-glow flex items-center justify-center space-x-3">
+                        <i class="fas fa-search"></i>
+                        <span>Find My Messages</span>
+                    </button>
+                </form>
+            </div>
+
+            {% if messages %}
+            <!-- Messages List -->
+            <div class="space-y-8">
+                {% for message in messages %}
+                <div class="bg-white rounded-xl shadow-soft overflow-hidden">
+                    <!-- Message -->
+                    <div class="p-6 {% if message.reply %}border-b border-gray-100{% endif %}">
+                        <div class="flex items-start justify-between mb-4">
+                            <div>
+                                <h3 class="text-lg font-semibold gradient-text">{{ message.subject }}</h3>
+                                <p class="text-sm text-gray-500">{{ message.created_at|date:"F j, Y, g:i a" }}</p>
+                            </div>
+                            <span class="px-4 py-2 rounded-full text-sm 
+                                {% if message.status == 'pending' %}
+                                    bg-yellow-100 text-yellow-800
+                                {% elif message.status == 'replied' %}
+                                    bg-green-100 text-green-800
+                                {% else %}
+                                    bg-gray-100 text-gray-800
+                                {% endif %}">
+                                {{ message.get_status_display }}
+                            </span>
+                        </div>
+                        <p class="text-gray-700">{{ message.message }}</p>
+                    </div>
+
+                    <!-- Reply -->
+                    {% if message.reply %}
+                    <div class="p-6 bg-gradient-to-br from-primary-light/5 via-accent-light/5 to-primary-dark/5">
+                        <div class="flex items-start space-x-4">
+                            <div class="flex-shrink-0">
+                                <div class="w-10 h-10 bg-gradient-to-r from-primary-light to-primary-dark rounded-full flex items-center justify-center">
+                                    <i class="fas fa-reply text-white"></i>
+                                </div>
+                            </div>
+                            <div class="flex-grow">
+                                <div class="flex items-center justify-between mb-2">
+                                    <h4 class="font-semibold text-primary-DEFAULT">Admin's Reply</h4>
+                                    <span class="text-sm text-gray-500">{{ message.replied_at|date:"F j, Y, g:i a" }}</span>
+                                </div>
+                                <p class="text-gray-700">{{ message.reply }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+            {% elif request.method == "POST" %}
+            <!-- No Messages Found -->
+            <div class="text-center py-16 bg-white rounded-xl shadow-soft">
+                <div class="w-20 h-20 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fas fa-inbox text-3xl text-primary-DEFAULT"></i>
+                </div>
+                <h3 class="text-xl font-medium gradient-text mb-2">No Messages Found</h3>
+                <p class="text-gray-600">We couldn't find any messages associated with this email address.</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<style>
+    .form-group {
+        @apply relative bg-white rounded-xl p-6 shadow-sm transition-all duration-300;
+    }
+
+    .icon-container {
+        @apply flex items-center justify-center w-12 h-12 mr-3 rounded-xl
+               bg-gradient-to-br from-gray-50 to-white
+               border-2 border-gray-200
+               transition-all duration-300;
+    }
+
+    input[type="email"] {
+        @apply w-full px-4 py-4 border-2 rounded-xl 
+               bg-white text-gray-900
+               focus:ring-2 focus:ring-primary-DEFAULT
+               transition-all duration-300;
+        border-image: linear-gradient(45deg, #6366f1, #ec4899, #0ea5e9) 1;
+        border-image-slice: 1;
+    }
+
+    input[type="email"]::placeholder {
+        @apply text-gray-400;
+    }
+</style>
+{% endblock %} 
