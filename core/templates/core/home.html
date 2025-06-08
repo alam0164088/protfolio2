@@ -5,17 +5,16 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'css/skills.css' %}">
+<link rel="stylesheet" href="{% static 'css/card-styles.css' %}">
 {% endblock %}
 
 {% block content %}
-
-
 <!-- Hero Section -->
 <section class="bg-gradient-to-br from-page-light via-page-DEFAULT to-page-dark py-20">
     <div class="container mx-auto px-4 text-center">
         <div class="relative inline-block mb-8">
             <div class="absolute inset-0 animate-gradient rounded-full blur-lg opacity-50"></div>
-            <img src="{% static 'img/mypic.jpg.jpg' %}" alt="Nazmul's Profile Picture" 
+            <img src="{% static 'img/mypic.jpg' %}" alt="Nazmul's Profile Picture" 
                  class="relative w-48 h-48 rounded-full object-cover shadow-glow ring-4 ring-primary-light/30">
             <div class="absolute -bottom-2 -right-2 bg-gradient-to-r from-primary-light to-accent-light text-white p-2 rounded-full shadow-glow animate-bounce">
                 <i class="fas fa-code text-xl"></i>
@@ -41,15 +40,14 @@
 </section>
 
 <!-- Skills Section -->
-<section class="py-20 bg-gradient-to-br from-indigo-50 via-pink-50 to-sky-50" id="skills">
+<section class="py-16 bg-gradient-to-br from-indigo-50 via-pink-50 to-sky-50" id="skills">
     <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-12 gradient-text">My Skills</h2>
-        
+        <h2 class="text-3xl font-bold text-center mb-10 gradient-text">My Skills</h2>
         <!-- Skill Type Tabs -->
-        <div class="flex flex-wrap justify-center gap-3 mb-12">
+        <div class="flex flex-wrap justify-center gap-2 mb-10">
             {% regroup skills by skill_type as skill_list %}
             {% for type in skill_list %}
-                <button class="tab-button px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 transform hover:scale-105
+                <button class="tab-button px-5 py-1.5 rounded-full text-xs font-medium transition-all duration-300 transform hover:scale-105
                              {% if forloop.first %}
                              bg-gradient-to-r from-primary-light to-primary-dark text-white shadow-glow
                              {% else %}
@@ -65,33 +63,31 @@
         {% for type in skill_list %}
             <div id="{{ type.grouper.name|default:'Other'|slugify }}" 
                  class="skill-content {% if not forloop.first %}hidden{% endif %} transition-all duration-300">
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                     {% for skill in type.list %}
-                        <div class="group bg-white rounded-xl shadow-soft hover:shadow-glow transition-all duration-500 transform hover:scale-102 overflow-hidden">
-                            <!-- Decorative gradient background -->
+                        <div class="group bg-white rounded-lg shadow-soft hover:shadow-glow transition-all duration-500 transform hover:scale-100 overflow-hidden">
                             <div class="absolute inset-0 bg-gradient-to-br from-primary-light/5 via-accent-light/5 to-primary-dark/5 group-hover:from-primary-light/10 group-hover:via-accent-light/10 group-hover:to-primary-dark/10 transition-all duration-500"></div>
-                            
-                            <div class="p-6 relative">
+                            <div class="p-4 relative">
                                 <!-- Skill Header with Icon -->
-                                <div class="flex items-center justify-between mb-6">
-                                    <div class="flex items-center gap-4">
-                                        <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-primary-light/10 to-primary-dark/10 flex items-center justify-center group-hover:from-primary-light/20 group-hover:to-primary-dark/20 transition-all duration-500">
-                                            <i class="{{ skill.icon }} text-2xl text-primary-DEFAULT group-hover:gradient-text transition-all duration-500"></i>
+                                <div class="flex items-center justify-between mb-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 rounded-md bg-gradient-to-br from-primary-light/10 to-primary-dark/10 flex items-center justify-center group-hover:from-primary-light/20 group-hover:to-primary-dark/20 transition-all duration-500">
+                                            <i class="{{ skill.icon }} text-xl text-primary-DEFAULT group-hover:gradient-text transition-all duration-500"></i>
                                         </div>
                                         <div>
-                                            <h4 class="text-xl font-semibold text-gray-800 group-hover:gradient-text transition-all duration-500">{{ skill.name }}</h4>
-                                            <span class="text-sm text-gray-500">{{ skill.skill_type.name }}</span>
+                                            <h4 class="text-lg font-semibold text-gray-800 group-hover:gradient-text transition-all duration-500">{{ skill.name }}</h4>
+                                            <span class="text-xs text-gray-500">{{ skill.skill_type.name|default:"Other" }}</span>
                                         </div>
                                     </div>
                                     <div class="text-right">
-                                        <span class="text-2xl font-bold gradient-text opacity-80 group-hover:opacity-100 transition-all duration-500">{{ skill.percentage }}%</span>
+                                        <span class="text-xl font-bold gradient-text opacity-80 group-hover:opacity-100 transition-all duration-500">{{ skill.percentage }}%</span>
                                     </div>
                                 </div>
 
                                 <!-- Skill Progress -->
-                                <div class="space-y-6">
+                                <div class="space-y-4">
                                     <div class="relative">
-                                        <div class="h-2.5 bg-gray-100 rounded-full overflow-hidden">
+                                        <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
                                             <div class="progress h-full bg-gradient-to-r from-primary-light via-accent-DEFAULT to-primary-dark transition-all duration-1000 relative"
                                                  data-percentage="{{ skill.percentage }}"
                                                  style="width: 0%">
@@ -101,40 +97,33 @@
                                     </div>
 
                                     <!-- Skill Details Grid -->
-                                    <div class="grid grid-cols-2 gap-4 text-sm">
-                                        <!-- Level -->
-                                        <div class="bg-gradient-to-br from-primary-light/5 to-primary-dark/5 rounded-lg p-3 group-hover:from-primary-light/10 group-hover:to-primary-dark/10 transition-all duration-500">
-                                            <div class="flex items-center gap-2 mb-1">
+                                    <div class="grid grid-cols-2 gap-3 text-xs">
+                                        <div class="bg-gradient-to-br from-primary-light/5 to-primary-dark/5 rounded-md p-2 group-hover:from-primary-light/10 group-hover:to-primary-dark/10 transition-all duration-500">
+                                            <div class="flex items-center gap-1 mb-1">
                                                 <i class="fas fa-star text-primary-DEFAULT group-hover:gradient-text transition-all duration-500"></i>
                                                 <span class="text-gray-600">Level</span>
                                             </div>
                                             <span class="font-medium text-primary-DEFAULT group-hover:gradient-text transition-all duration-500">{{ skill.get_level_display }}</span>
                                         </div>
-
-                                        <!-- Experience -->
-                                        <div class="bg-gradient-to-br from-primary-light/5 to-primary-dark/5 rounded-lg p-3 group-hover:from-primary-light/10 group-hover:to-primary-dark/10 transition-all duration-500">
-                                            <div class="flex items-center gap-2 mb-1">
+                                        <div class="bg-gradient-to-br from-primary-light/5 to-primary-dark/5 rounded-md p-2 group-hover:from-primary-light/10 group-hover:to-primary-dark/10 transition-all duration-500">
+                                            <div class="flex items-center gap-1 mb-1">
                                                 <i class="fas fa-clock text-primary-DEFAULT group-hover:gradient-text transition-all duration-500"></i>
                                                 <span class="text-gray-600">Experience</span>
                                             </div>
                                             <span class="font-medium">{{ skill.experience_years }} years</span>
                                         </div>
-
-                                        <!-- Last Used -->
                                         {% if skill.last_used %}
-                                        <div class="bg-gradient-to-br from-primary-light/5 to-primary-dark/5 rounded-lg p-3 group-hover:from-primary-light/10 group-hover:to-primary-dark/10 transition-all duration-500">
-                                            <div class="flex items-center gap-2 mb-1">
+                                        <div class="bg-gradient-to-br from-primary-light/5 to-primary-dark/5 rounded-md p-2 group-hover:from-primary-light/10 group-hover:to-primary-dark/10 transition-all duration-500">
+                                            <div class="flex items-center gap-1 mb-1">
                                                 <i class="fas fa-calendar text-primary-DEFAULT group-hover:gradient-text transition-all duration-500"></i>
                                                 <span class="text-gray-600">Last Used</span>
                                             </div>
                                             <span class="font-medium">{{ skill.last_used|date:"M Y" }}</span>
                                         </div>
                                         {% endif %}
-
-                                        <!-- Certification -->
                                         {% if skill.certification %}
-                                        <div class="bg-gradient-to-br from-primary-light/5 to-primary-dark/5 rounded-lg p-3 group-hover:from-primary-light/10 group-hover:to-primary-dark/10 transition-all duration-500">
-                                            <div class="flex items-center gap-2 mb-1">
+                                        <div class="bg-gradient-to-br from-primary-light/5 to-primary-dark/5 rounded-md p-2 group-hover:from-primary-light/10 group-hover:to-primary-dark/10 transition-all duration-500">
+                                            <div class="flex items-center gap-1 mb-1">
                                                 <i class="fas fa-certificate text-primary-DEFAULT group-hover:gradient-text transition-all duration-500"></i>
                                                 <span class="text-gray-600">Certification</span>
                                             </div>
@@ -143,24 +132,22 @@
                                         {% endif %}
                                     </div>
 
-                                    <!-- Project Usage Badge -->
                                     {% if skill.used_in_projects %}
-                                    <div class="inline-flex items-center gap-2 bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm">
+                                    <div class="inline-flex items-center gap-1 bg-green-100 text-green-700 px-2 py-0.5 rounded-full text-xs">
                                         <i class="fas fa-check-circle"></i>
                                         <span>Used in Projects</span>
                                     </div>
                                     {% endif %}
 
-                                    <!-- Related Skills -->
                                     {% if skill.related_skills.all %}
-                                    <div class="mt-4 bg-gradient-to-br from-primary-light/5 to-primary-dark/5 rounded-lg p-4 group-hover:from-primary-light/10 group-hover:to-primary-dark/10 transition-all duration-500">
-                                        <div class="flex items-center gap-2 mb-3">
+                                    <div class="mt-3 bg-gradient-to-br from-primary-light/5 to-primary-dark/5 rounded-md p-3 group-hover:from-primary-light/10 group-hover:to-primary-dark/10 transition-all duration-500">
+                                        <div class="flex items-center gap-1 mb-2">
                                             <i class="fas fa-link text-primary-DEFAULT group-hover:gradient-text transition-all duration-500"></i>
-                                            <span class="text-gray-600 text-sm">Related Skills</span>
+                                            <span class="text-gray-600 text-xs">Related Skills</span>
                                         </div>
-                                        <div class="flex flex-wrap gap-2">
+                                        <div class="flex flex-wrap gap-1">
                                             {% for related in skill.related_skills.all %}
-                                            <span class="px-3 py-1 bg-white/50 text-gray-700 rounded-full text-xs flex items-center gap-1 hover:bg-white transition-all duration-300">
+                                            <span class="px-2 py-0.5 bg-white/50 text-gray-700 rounded-full text-xs flex items-center gap-1 hover:bg-white transition-all duration-300">
                                                 <i class="{{ related.icon }} text-primary-DEFAULT"></i>
                                                 {{ related.name }}
                                             </span>
@@ -169,14 +156,13 @@
                                     </div>
                                     {% endif %}
 
-                                    <!-- Skill Description -->
                                     {% if skill.skill_description %}
-                                    <div class="mt-4 bg-gradient-to-br from-primary-light/5 to-primary-dark/5 rounded-lg p-4 group-hover:from-primary-light/10 group-hover:to-primary-dark/10 transition-all duration-500">
-                                        <div class="flex items-center gap-2 mb-2">
+                                    <div class="mt-3 bg-gradient-to-br from-primary-light/5 to-primary-dark/5 rounded-md p-3 group-hover:from-primary-light/10 group-hover:to-primary-dark/10 transition-all duration-500">
+                                        <div class="flex items-center gap-1 mb-2">
                                             <i class="fas fa-info-circle text-primary-DEFAULT group-hover:gradient-text transition-all duration-500"></i>
-                                            <span class="text-gray-600 text-sm">Description</span>
+                                            <span class="text-gray-600 text-xs">Description</span>
                                         </div>
-                                        <p class="text-gray-600 text-sm line-clamp-3 group-hover:line-clamp-none transition-all duration-500">{{ skill.skill_description }}</p>
+                                        <p class="text-gray-600 text-xs line-clamp-3 group-hover:line-clamp-none transition-all duration-500">{{ skill.skill_description }}</p>
                                     </div>
                                     {% endif %}
                                 </div>
@@ -190,22 +176,21 @@
 </section>
 
 <!-- Featured Projects Section -->
-<section class="py-20 bg-gradient-to-br from-page-light via-page-DEFAULT to-page-dark" id="projects">
+<section class="py-16 bg-gradient-to-br from-page-light via-page-DEFAULT to-page-dark" id="projects">
     <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-12 gradient-text">Featured Projects</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <h2 class="text-3xl font-bold text-center mb-10 gradient-text">Featured Projects</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {% for project in projects|slice:":3" %}
-            <div class="group bg-white rounded-xl shadow-soft hover:shadow-glow transition-all duration-300 transform hover:scale-105 overflow-hidden">
-                <!-- Project Slider -->
-                <div class="project-slider relative h-64">
+            <div class="group bg-white rounded-lg shadow-soft hover:shadow-glow transition-all duration-300 transform hover:scale-102 overflow-hidden">
+                <div class="project-slider relative h-48">
                     {% for image in project.images.all %}
                     <div class="slide h-full">
                         <img src="{{ image.image.url }}" 
                              alt="{{ image.caption|default:project.title }}" 
                              class="w-full h-full object-cover">
                         {% if image.caption %}
-                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent text-white p-4">
-                            <p class="text-sm">{{ image.caption }}</p>
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent text-white p-3">
+                            <p class="text-xs">{{ image.caption }}</p>
                         </div>
                         {% endif %}
                     </div>
@@ -214,38 +199,36 @@
                         <img src="{% static 'images/placeholder.jpg' %}" 
                              alt="No image available" 
                              class="w-full h-full object-cover">
-                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent text-white p-4">
-                            <p class="text-sm">{{ project.title }}</p>
+                        <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent text-white p-3">
+                            <p class="text-xs">{{ project.title }}</p>
                         </div>
                     </div>
                     {% endfor %}
                 </div>
-                
-                <div class="p-6 relative">
+                <div class="p-4 relative">
                     <div class="absolute inset-0 bg-gradient-to-br from-primary-light/5 via-accent-light/5 to-primary-dark/5 group-hover:from-primary-light/10 group-hover:via-accent-light/10 group-hover:to-primary-dark/10 transition-all duration-300"></div>
                     <div class="relative">
-                        <h3 class="text-xl font-semibold mb-4 text-gray-800 group-hover:gradient-text transition-all duration-300">{{ project.title }}</h3>
-                        <!-- Project Links -->
-                        <div class="flex flex-wrap gap-4 pt-4">
+                        <h3 class="text-lg font-semibold mb-3 text-gray-800 group-hover:gradient-text transition-all duration-300">{{ project.title }}</h3>
+                        <div class="flex flex-wrap gap-3 pt-3">
                             {% if project.frontend_demo %}
                             <a href="{{ project.frontend_demo }}" 
-                               class="flex-1 text-center bg-gradient-to-r from-primary-light to-primary-dark text-white px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-glow"
+                               class="flex-1 text-center bg-gradient-to-r from-primary-light to-primary-dark text-white px-3 py-1.5 rounded-md text-sm transition-all duration-300 transform hover:scale-105 hover:shadow-glow"
                                target="_blank">
-                                <i class="fas fa-desktop mr-2"></i>
-                                Frontend
+                                <i class="fas fa-desktop mr-1"></i>
+                                Live Link
                             </a>
                             {% endif %}
                             {% if project.backend_demo %}
                             <a href="{{ project.backend_demo }}" 
-                               class="flex-1 text-center bg-gradient-to-r from-accent-light to-accent-dark text-white px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-glow"
+                               class="flex-1 text-center bg-gradient-to-r from-accent-light to-accent-dark text-white px-3 py-1.5 rounded-md text-sm transition-all duration-300 transform hover:scale-105 hover:shadow-glow"
                                target="_blank">
-                                <i class="fas fa-server mr-2"></i>
-                                Backend
+                                <i class="fas fa-server mr-1"></i>
+                                Backend API
                             </a>
                             {% endif %}
                             <a href="{% url 'project_detail' project.id %}" 
-                               class="flex-1 text-center gradient-border bg-white text-primary-DEFAULT px-4 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-glow">
-                                <i class="fas fa-info-circle mr-2"></i>
+                               class="flex-1 text-center gradient-border bg-white text-primary-DEFAULT px-3 py-1.5 rounded-md text-sm transition-all duration-300 transform hover:scale-105 hover:shadow-glow">
+                                <i class="fas fa-info-circle mr-1"></i>
                                 Details
                             </a>
                         </div>
@@ -256,9 +239,9 @@
             <p class="text-center text-gray-600 col-span-3">No projects available at the moment.</p>
             {% endfor %}
         </div>
-        <div class="text-center mt-12">
+        <div class="text-center mt-10">
             <a href="{% url 'projects' %}" 
-               class="inline-block bg-gradient-to-r from-primary-light to-primary-dark text-white px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-glow">
+               class="inline-block bg-gradient-to-r from-primary-light to-primary-dark text-white px-6 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-glow">
                 <i class="fas fa-project-diagram mr-2"></i>
                 See All Projects
             </a>
@@ -267,14 +250,14 @@
 </section>
 
 <!-- About Me Section -->
-<section class="py-20 bg-gradient-to-br from-indigo-50 via-pink-50 to-sky-50" id="about">
+<section class="py-16 bg-gradient-to-br from-indigo-50 via-pink-50 to-sky-50" id="about">
     <div class="container mx-auto px-4">
         <h2 class="text-3xl font-bold text-center mb-8 gradient-text">About Me</h2>
         <div class="max-w-3xl mx-auto">
-            <div class="group bg-white rounded-xl shadow-soft hover:shadow-glow p-8 relative overflow-hidden transition-all duration-300 transform hover:scale-105">
+            <div class="group bg-white rounded-lg shadow-soft hover:shadow-glow p-6 relative overflow-hidden transition-all duration-300 transform hover:scale-102">
                 <div class="absolute inset-0 bg-gradient-to-br from-primary-light/5 via-accent-light/5 to-primary-dark/5 group-hover:from-primary-light/10 group-hover:via-accent-light/10 group-hover:to-primary-dark/10 transition-all duration-300"></div>
                 <div class="relative">
-                    <p class="text-lg text-gray-600 leading-relaxed">
+                    <p class="text-base text-gray-600 leading-relaxed">
                         Hello, I'm Nazmul, a Django developer with a love for building web applications that are both powerful and user-friendly. 
                         Trained at oStad, I specialize in Django and Python, creating everything from smooth backends to interactive frontends with React. 
                         Coding is my way of solving problems and bringing ideas to life, and I enjoy working on projects that make an impact. 
@@ -287,39 +270,39 @@
 </section>
 
 <!-- Contact Section -->
-<section class="py-20 bg-gradient-to-br from-page-light via-page-DEFAULT to-page-dark" id="contact">
+<section class="py-16 bg-gradient-to-br from-page-light via-page-DEFAULT to-page-dark" id="contact">
     <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center mb-12 gradient-text">Contact Me</h2>
-        <div class="max-w-lg mx-auto">
-            <div class="group bg-white rounded-xl shadow-soft hover:shadow-glow p-8 relative overflow-hidden transition-all duration-300 transform hover:scale-105">
+        <h2 class="text-3xl font-bold text-center mb-10 gradient-text">Contact Me</h2>
+        <div class="max-w-md mx-auto">
+            <div class="group bg-white rounded-lg shadow-soft hover:shadow-glow p-6 relative overflow-hidden transition-all duration-300 transform hover:scale-102">
                 <div class="absolute inset-0 bg-gradient-to-br from-primary-light/5 via-accent-light/5 to-primary-dark/5 group-hover:from-primary-light/10 group-hover:via-accent-light/10 group-hover:to-primary-dark/10 transition-all duration-300"></div>
-                <div class="relative space-y-6">
-                    <div class="flex items-center space-x-4 text-gray-600 group/item">
-                        <div class="w-12 h-12 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center group-hover/item:from-primary-light/20 group-hover/item:to-primary-dark/20 transition-all duration-300">
-                            <i class="fas fa-envelope text-primary-DEFAULT text-xl group-hover/item:gradient-text"></i>
+                <div class="relative space-y-4">
+                    <div class="flex items-center space-x-3 text-gray-600 group/item">
+                        <div class="w-10 h-10 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center group-hover/item:from-primary-light/20 group-hover/item:to-primary-dark/20 transition-all duration-300">
+                            <i class="fas fa-envelope text-primary-DEFAULT text-lg group-hover/item:gradient-text"></i>
                         </div>
-                        <span class="group-hover/item:gradient-text transition-all duration-300">alam01640882530@gmail.com</span>
+                        <a href="mailto:alam01640882530@gmail.com" class="group-hover/item:gradient-text transition-all duration-300 text-sm">alam01640882530@gmail.com</a>
                     </div>
-                    <div class="flex items-center space-x-4 text-gray-600 group/item">
-                        <div class="w-12 h-12 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center group-hover/item:from-primary-light/20 group-hover/item:to-primary-dark/20 transition-all duration-300">
-                            <i class="fas fa-phone text-primary-DEFAULT text-xl group-hover/item:gradient-text"></i>
+                    <div class="flex items-center space-x-3 text-gray-600 group/item">
+                        <div class="w-10 h-10 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center group-hover/item:from-primary-light/20 group-hover/item:to-primary-dark/20 transition-all duration-300">
+                            <i class="fas fa-phone text-primary-DEFAULT text-lg group-hover/item:gradient-text"></i>
                         </div>
-                        <span class="group-hover/item:gradient-text transition-all duration-300">+8801731380156</span>
+                        <a href="tel:+8801731380156" class="group-hover/item:gradient-text transition-all duration-300 text-sm">+8801731380156</a>
                     </div>
-                    <div class="flex justify-center space-x-6">
+                    <div class="flex justify-center space-x-4">
                         <a href="https://github.com/alam0164088" 
-                           class="w-12 h-12 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center text-primary-DEFAULT hover:from-primary-light hover:to-primary-dark hover:text-white transition-all duration-300 transform hover:scale-110 hover:shadow-glow"
-                           target="_blank">
-                            <i class="fab fa-github text-xl"></i>
+                           class="w-10 h-10 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center text-primary-DEFAULT hover:from-primary-light hover:to-primary-dark hover:text-white transition-all duration-300 transform hover:scale-110 hover:shadow-glow"
+                           target="_blank" aria-label="GitHub">
+                            <i class="fab fa-github text-lg"></i>
                         </a>
                         <a href="https://www.linkedin.com/in/nazmul-alam-803615325" 
-                           class="w-12 h-12 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center text-primary-DEFAULT hover:from-primary-light hover:to-primary-dark hover:text-white transition-all duration-300 transform hover:scale-110 hover:shadow-glow"
-                           target="_blank">
-                            <i class="fab fa-linkedin text-xl"></i>
+                           class="w-10 h-10 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center text-primary-DEFAULT hover:from-primary-light hover:to-primary-dark hover:text-white transition-all duration-300 transform hover:scale-110 hover:shadow-glow"
+                           target="_blank" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin text-lg"></i>
                         </a>
                     </div>
                     <a href="{% url 'contact' %}" 
-                       class="block text-center bg-gradient-to-r from-primary-light to-primary-dark text-white px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-glow">
+                       class="block text-center bg-gradient-to-r from-primary-light to-primary-dark text-white px-6 py-2 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-glow">
                         <i class="fas fa-paper-plane mr-2"></i>
                         Message Me
                     </a>
@@ -328,71 +311,42 @@
         </div>
     </div>
 </section>
-
-<!-- Include the CSS -->
-<link rel="stylesheet" href="{% static 'css/styles.css' %}">
-<!-- Include Font Awesome for arrows -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-<!-- Include jQuery and Slick JS -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-<!-- Include custom JS -->
-<script> 
-    document.addEventListener('DOMContentLoaded', function() {
-        // Initialize project sliders
-        $('.project-slider').slick({
-            dots: true,
-            arrows: true,
-            infinite: true,
-            speed: 500,
-            fade: true,
-            cssEase: 'linear',
-            autoplay: true,
-            autoplaySpeed: 3000,
-            prevArrow: '<button type="button" class="slick-prev absolute left-0 z-10 h-full px-4 text-white bg-gradient-to-r from-black/30 to-transparent hover:from-black/50 transition-colors"><i class="fas fa-chevron-left"></i></button>',
-            nextArrow: '<button type="button" class="slick-next absolute right-0 z-10 h-full px-4 text-white bg-gradient-to-l from-black/30 to-transparent hover:from-black/50 transition-colors"><i class="fas fa-chevron-right"></i></button>',
-            responsive: [
-                {
-                    breakpoint: 768,
-                    settings: {
-                        arrows: false
-                    }
-                }
-            ]
-        });
-    });
-</script>
 {% endblock %}
 
 {% block extra_js %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize project sliders
+    $('.project-slider').slick({
+        dots: true,
+        arrows: true,
+        infinite: true,
+        speed: 500,
+        fade: true,
+        cssEase: 'linear',
+        autoplay: true,
+        autoplaySpeed: 3000,
+        prevArrow: '<button type="button" class="slick-prev absolute left-0 z-10 h-full px-3 text-white bg-gradient-to-r from-black/30 to-transparent hover:from-black/50 transition-colors"><i class="fas fa-chevron-left"></i></button>',
+        nextArrow: '<button type="button" class="slick-next absolute right-0 z-10 h-full px-3 text-white bg-gradient-to-l from-black/30 to-transparent hover:from-black/50 transition-colors"><i class="fas fa-chevron-right"></i></button>',
+        responsive: [{ breakpoint: 768, settings: { arrows: false } }]
+    });
+
     // Tab functionality
     const tabButtons = document.querySelectorAll('.tab-button');
-    
     tabButtons.forEach(button => {
         button.addEventListener('click', function() {
-            // Remove active classes from all buttons
             tabButtons.forEach(btn => {
                 btn.classList.remove('bg-gradient-to-r', 'from-primary-light', 'to-primary-dark', 'text-white', 'shadow-glow');
                 btn.classList.add('bg-white', 'text-primary-DEFAULT');
             });
-            
-            // Add active classes to clicked button
             this.classList.remove('bg-white', 'text-primary-DEFAULT');
             this.classList.add('bg-gradient-to-r', 'from-primary-light', 'to-primary-dark', 'text-white', 'shadow-glow');
-            
-            // Hide all content sections
-            document.querySelectorAll('.skill-content').forEach(content => {
-                content.classList.add('hidden');
-            });
-            
-            // Show selected content
+            document.querySelectorAll('.skill-content').forEach(content => content.classList.add('hidden'));
             const targetId = this.getAttribute('data-target');
             const targetContent = document.getElementById(targetId);
             targetContent.classList.remove('hidden');
-            
-            // Animate progress bars
             animateProgressBars(targetContent);
         });
     });
@@ -403,17 +357,13 @@ document.addEventListener('DOMContentLoaded', function() {
         progressBars.forEach(progress => {
             const percentage = progress.getAttribute('data-percentage');
             progress.style.width = '0%';
-            setTimeout(() => {
-                progress.style.width = percentage + '%';
-            }, 50);
+            setTimeout(() => { progress.style.width = percentage + '%'; }, 50);
         });
     }
 
     // Initialize first tab
     const firstContent = document.querySelector('.skill-content');
-    if (firstContent) {
-        animateProgressBars(firstContent);
-    }
+    if (firstContent) animateProgressBars(firstContent);
 });
 </script>
 {% endblock %}

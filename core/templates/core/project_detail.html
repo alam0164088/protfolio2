@@ -3,46 +3,49 @@
 
 {% block title %}{{ project.title }} - Project Details{% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'css/card-styles.css' %}">
+{% endblock %}
+
 {% block content %}
-<section class="py-20 bg-gradient-to-br from-page-light via-page-DEFAULT to-page-dark">
+<section class="py-16 bg-gradient-to-br from-page-light via-page-DEFAULT to-page-dark">
     <div class="container mx-auto px-4">
         <div class="max-w-6xl mx-auto">
             <!-- Project Header -->
-            <div class="text-center mb-16">
-                <h1 class="text-4xl font-bold gradient-text mb-4">{{ project.title }}</h1>
-                <div class="flex justify-center items-center space-x-6 text-gray-600">
+            <div class="text-center mb-10">
+                <h1 class="text-3xl font-bold gradient-text mb-4">{{ project.title }}</h1>
+                <div class="flex justify-center items-center space-x-4 text-gray-600">
                     {% if project.created_at %}
                     <div class="group flex items-center space-x-2">
-                        <div class="w-8 h-8 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center group-hover:from-primary-light/20 group-hover:to-primary-dark/20">
-                            <i class="far fa-calendar-alt text-primary-DEFAULT group-hover:gradient-text"></i>
+                        <div class="w-6 h-6 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center group-hover:from-primary-light/20 group-hover:to-primary-dark/20">
+                            <i class="far fa-calendar-alt text-primary-DEFAULT group-hover:gradient-text text-sm"></i>
                         </div>
-                        <span class="group-hover:gradient-text">{{ project.created_at|date:"F Y" }}</span>
+                        <span class="group-hover:gradient-text text-sm">{{ project.created_at|date:"F Y" }}</span>
                     </div>
                     {% endif %}
                     {% if project.category %}
                     <div class="group flex items-center space-x-2">
-                        <div class="w-8 h-8 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center group-hover:from-primary-light/20 group-hover:to-primary-dark/20">
-                            <i class="fas fa-tag text-primary-DEFAULT group-hover:gradient-text"></i>
+                        <div class="w-6 h-6 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center group-hover:from-primary-light/20 group-hover:to-primary-dark/20">
+                            <i class="fas fa-tag text-primary-DEFAULT group-hover:gradient-text text-sm"></i>
                         </div>
-                        <span class="group-hover:gradient-text">{{ project.category }}</span>
+                        <span class="group-hover:gradient-text text-sm">{{ project.category }}</span>
                     </div>
                     {% endif %}
                 </div>
             </div>
 
             <!-- Project Content -->
-            <div class="bg-white rounded-xl shadow-soft overflow-hidden">
-                <!-- Project Images Slider -->
+            <div class="bg-white rounded-lg shadow-soft overflow-hidden">
                 <div class="relative">
                     <div class="project-slider">
                         {% if project.images.all %}
                             {% for image in project.images.all %}
                             <div class="slide relative">
                                 <img src="{{ image.image.url }}" alt="{{ image.caption|default:project.title }}" 
-                                     class="w-full h-[500px] object-cover">
+                                     class="w-full h-[400px] object-cover">
                                 {% if image.caption %}
-                                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent text-white p-6">
-                                    <p class="text-lg">{{ image.caption }}</p>
+                                <div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent text-white p-4">
+                                    <p class="text-base">{{ image.caption }}</p>
                                 </div>
                                 {% endif %}
                             </div>
@@ -51,49 +54,49 @@
                             <div class="slide relative">
                                 <img src="{% if project.image %}{{ project.image.url }}{% else %}{% static 'images/placeholder.jpg' %}{% endif %}" 
                                      alt="{% if project.image %}{{ project.title }}{% else %}No image available{% endif %}"
-                                     class="w-full h-[500px] object-cover">
+                                     class="w-full h-[400px] object-cover">
                             </div>
                         {% endif %}
                     </div>
-                    <div class="absolute top-1/2 -translate-y-1/2 left-4">
-                        <button class="slider-nav prev w-12 h-12 bg-gradient-to-r from-black/30 to-transparent hover:from-black/50 rounded-full flex items-center justify-center text-white transition-all duration-300 transform hover:scale-110">
+                    <div class="absolute top-1/2 -translate-y-1/2 left-3">
+                        <button class="slider-nav prev w-10 h-10 bg-gradient-to-r from-black/30 to-transparent hover:from-black/50 rounded-full flex items-center justify-center text-white transition-all duration-300 transform hover:scale-110">
                             <i class="fas fa-chevron-left"></i>
                         </button>
                     </div>
-                    <div class="absolute top-1/2 -translate-y-1/2 right-4">
-                        <button class="slider-nav next w-12 h-12 bg-gradient-to-l from-black/30 to-transparent hover:from-black/50 rounded-full flex items-center justify-center text-white transition-all duration-300 transform hover:scale-110">
+                    <div class="absolute top-1/2 -translate-y-1/2 right-3">
+                        <button class="slider-nav next w-10 h-10 bg-gradient-to-l from-black/30 to-transparent hover:from-black/50 rounded-full flex items-center justify-center text-white transition-all duration-300 transform hover:scale-110">
                             <i class="fas fa-chevron-right"></i>
                         </button>
                     </div>
                 </div>
 
-                <div class="p-8">
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="p-6">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
                         <!-- Project Description -->
-                        <div class="lg:col-span-2 space-y-8">
-                            <div class="group bg-gradient-to-br from-primary-light/5 via-accent-light/5 to-primary-dark/5 p-6 rounded-xl">
-                                <h2 class="text-2xl font-bold gradient-text mb-4 flex items-center">
-                                    <i class="fas fa-align-left mr-3"></i>
+                        <div class="lg:col-span-2 space-y-6">
+                            <div class="group bg-gradient-to-br from-primary-light/5 via-accent-light/5 to-primary-dark/5 p-4 rounded-lg">
+                                <h2 class="text-xl font-bold gradient-text mb-3 flex items-center">
+                                    <i class="fas fa-align-left mr-2"></i>
                                     Project Description
                                 </h2>
-                                <div class="text-gray-600 space-y-4">
+                                <div class="text-gray-600 text-sm space-y-3">
                                     {{ project.description|linebreaks }}
                                 </div>
                             </div>
 
                             {% if project.features %}
-                            <div class="group bg-gradient-to-br from-primary-light/5 via-accent-light/5 to-primary-dark/5 p-6 rounded-xl">
-                                <h2 class="text-2xl font-bold gradient-text mb-4 flex items-center">
-                                    <i class="fas fa-star mr-3"></i>
+                            <div class="group bg-gradient-to-br from-primary-light/5 via-accent-light/5 to-primary-dark/5 p-4 rounded-lg">
+                                <h2 class="text-xl font-bold gradient-text mb-3 flex items-center">
+                                    <i class="fas fa-star mr-2"></i>
                                     Key Features
                                 </h2>
-                                <ul class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <ul class="grid grid-cols-1 md:grid-cols-2 gap-3">
                                     {% for feature in project.features.splitlines %}
-                                    <li class="flex items-start space-x-3 group/item">
-                                        <div class="w-6 h-6 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex-shrink-0 flex items-center justify-center mt-1 group-hover/item:from-primary-light group-hover/item:to-primary-dark transition-all duration-300">
-                                            <i class="fas fa-check text-sm text-primary-DEFAULT group-hover/item:text-white"></i>
+                                    <li class="flex items-start space-x-2 group/item">
+                                        <div class="w-5 h-5 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex-shrink-0 flex items-center justify-center mt-0.5 group-hover/item:from-primary-light group-hover/item:to-primary-dark transition-all duration-300">
+                                            <i class="fas fa-check text-xs text-primary-DEFAULT group-hover/item:text-white"></i>
                                         </div>
-                                        <span class="text-gray-600">{{ feature }}</span>
+                                        <span class="text-gray-600 text-sm">{{ feature }}</span>
                                     </li>
                                     {% endfor %}
                                 </ul>
@@ -102,65 +105,63 @@
                         </div>
 
                         <!-- Project Sidebar -->
-                        <div class="space-y-8">
-                            <!-- Technologies -->
-                            <div class="group bg-gradient-to-br from-primary-light/5 via-accent-light/5 to-primary-dark/5 p-6 rounded-xl">
-                                <h2 class="text-2xl font-bold gradient-text mb-4 flex items-center">
-                                    <i class="fas fa-code mr-3"></i>
+                        <div class="space-y-6">
+                            <div class="group bg-gradient-to-br from-primary-light/5 via-accent-light/5 to-primary-dark/5 p-4 rounded-lg">
+                                <h2 class="text-xl font-bold gradient-text mb-3 flex items-center">
+                                    <i class="fas fa-code mr-2"></i>
                                     Technologies
                                 </h2>
-                                <div class="flex flex-wrap gap-2">
+                                <div class="flex flex-wrap gap-1">
                                     {% for tech in project.technologies.all %}
-                                    <span class="px-4 py-2 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 text-primary-DEFAULT rounded-full text-sm group-hover:from-primary-light group-hover:to-primary-dark group-hover:text-white transition-all duration-300">
+                                    <span class="px-3 py-1 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 text-primary-DEFAULT rounded-full text-xs group-hover:from-primary-light group-hover:to-primary-dark group-hover:text-white transition-all duration-300">
                                         {{ tech.name }}
                                     </span>
                                     {% endfor %}
                                 </div>
                             </div>
 
-                            <!-- Project Links -->
-                            <div class="space-y-4">
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="space-y-3">
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
                                     {% if project.frontend_demo %}
                                     <a href="{{ project.frontend_demo }}" 
-                                       class="group flex items-center justify-center space-x-3 bg-gradient-to-r from-primary-light to-primary-dark text-white px-6 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-glow"
+                                       class="group flex items-center justify-center space-x-2 bg-gradient-to-r from-primary-light to-primary-dark text-white px-4 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-glow"
                                        target="_blank">
-                                        <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center">
-                                            <i class="fas fa-desktop text-xl group-hover:animate-bounce"></i>
+                                        <div class="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-desktop text-lg group-hover:animate-bounce"></i>
                                         </div>
-                                        <span class="font-semibold">Frontend</span>
+                                        <span class="font-semibold text-sm">Live Link</span>
                                     </a>
                                     {% endif %}
 
                                     {% if project.backend_demo %}
                                     <a href="{{ project.backend_demo }}" 
-                                       class="group flex items-center justify-center space-x-3 bg-gradient-to-r from-accent-light to-accent-dark text-white px-6 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-glow"
+                                       class="group flex items-center justify-center space-x-2 bg-gradient-to-r from-accent-light to-accent-dark text-white px-4 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-glow"
                                        target="_blank">
-                                        <div class="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center">
-                                            <i class="fas fa-server text-xl group-hover:animate-bounce"></i>
+                                        <div class="w-8 h-8 bg-white/10 rounded-full flex items-center justify-center">
+                                            <i class="fas fa-server text-lg group-hover:animate-bounce"></i>
                                         </div>
-                                        <span class="font-semibold">Backend</span>
+                                        <span class="font-semibold text-sm">Backend API</span>
                                     </a>
                                     {% endif %}
                                 </div>
 
                                 {% if project.source_code %}
                                 <a href="{{ project.source_code }}" 
-                                   class="group flex items-center justify-center space-x-3 gradient-border bg-white text-primary-DEFAULT px-6 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-glow w-full"
+                                   class="group flex items-center justify-center space-x-2 gradient-border bg-white text-primary-DEFAULT px-4 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-glow w-full"
                                    target="_blank">
-                                    <div class="w-10 h-10 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center group-hover:from-primary-light group-hover:to-primary-dark group-hover:text-white">
-                                        <i class="fab fa-github text-xl group-hover:animate-bounce"></i>
+                                    <div class="w-8 h-8 bg-gradient-to-r from-primary-light/10 to-primary-dark/10 rounded-full flex items-center justify-center group-hover:from-primary-light group-hover:to-primary-dark group-hover:text-white">
+                                        <i class="fab fa-github text-lg group-hover:animate-bounce"></i>
                                     </div>
-                                    <span class="font-semibold">View Source Code</span>
+                                    <span class="font-semibold text-sm">View Source Code</span>
                                 </a>
                                 {% endif %}
 
                                 <a href="{% url 'projects' %}" 
-                                   class="group flex items-center justify-center space-x-3 bg-gray-100 text-gray-600 px-6 py-4 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-soft w-full">
-                                    <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center">
-                                        <i class="fas fa-arrow-left text-xl group-hover:animate-bounce"></i>
+                                   class="group flex items-center justify-center space-x-2 bg-gray-100 text-gray-600 px-4 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-soft w-full">
+                                    <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center">
+                                        <i class="fas fa-arrow-left text-lg group-hover:animate-bounce"></i>
                                     </div>
-                                    <span class="font-semibold">Back to Projects</span>
+                                    <span class="font-semibold text-sm">Back to Projects</span>
                                 </a>
                             </div>
                         </div>
@@ -170,39 +171,31 @@
         </div>
     </div>
 </section>
+{% endblock %}
 
+{% block extra_js %}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 <script>
-    $(document).ready(function(){
-        $('.project-slider').slick({
-            dots: true,
-            infinite: true,
-            speed: 500,
-            fade: true,
-            cssEase: 'linear',
-            autoplay: true,
-            autoplaySpeed: 3000,
-            prevArrow: $('.prev'),
-            nextArrow: $('.next'),
-            responsive: [
-                {
-                    breakpoint: 768,
-                    settings: {
-                        arrows: false
-                    }
-                }
-            ]
-        });
-        
-        // Add animation to slider when it changes slide
-        $('.project-slider').on('beforeChange', function(event, slick, currentSlide, nextSlide){
-            $('.slide img').css('transform', 'scale(0.95)');
-        });
-        
-        $('.project-slider').on('afterChange', function(event, slick, currentSlide){
-            $('.slide img').css('transform', 'scale(1)');
-        });
+$(document).ready(function(){
+    $('.project-slider').slick({
+        dots: true,
+        infinite: true,
+        speed: 500,
+        fade: true,
+        cssEase: 'linear',
+        autoplay: true,
+        autoplaySpeed: 3000,
+        prevArrow: $('.prev'),
+        nextArrow: $('.next'),
+        responsive: [{ breakpoint: 768, settings: { arrows: false } }]
     });
+    $('.project-slider').on('beforeChange', function(event, slick, currentSlide, nextSlide){
+        $('.slide img').css('transform', 'scale(0.95)');
+    });
+    $('.project-slider').on('afterChange', function(event, slick, currentSlide){
+        $('.slide img').css('transform', 'scale(1)');
+    });
+});
 </script>
 {% endblock %}
